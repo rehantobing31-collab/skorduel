@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkorDuel — Prediksi Tim A vs Tim B</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo h1 {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00d4ff, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .logo p {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+      margin-bottom: 18px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    select:focus {
+      border-color: #a855f7;
+      background-color: rgba(168, 85, 247, 0.1);
+    }
+
+    select option {
+      background: #1e1b4b;
+      color: #fff;
+    }
+
+    .vs-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .vs-row select {
+      margin-bottom: 0;
+    }
+
+    .vs-badge {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ec4899;
+      padding: 0 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(90deg, #00d4ff, #a855f7, #ec4899);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-title {
+      text-align: center;
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    .result-title strong {
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .bar-item {
+      margin-bottom: 14px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    .bar-track {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width 0.8s ease;
+      width: 0;
+    }
+
+    .bar-a { background: linear-gradient(90deg, #00d4ff, #3b82f6); }
+    .bar-draw { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .bar-b { background: linear-gradient(90deg, #ec4899, #f43f5e); }
+
+    .winner {
+      text-align: center;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .winner strong {
+      color: #00d4ff;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1>SkorDuel</h1>
+      <p>Prediksi Tim A vs Tim B</p>
+    </div>
+
+    <label for="liga">Pilih Liga</label>
+    <select id="liga">
+      <option value="">-- Pilih Liga --</option>
+      <option value="premier-league">Premier League (Inggris)</option>
+      <option value="la-liga">La Liga (Spanyol)</option>
+      <option value="serie-a">Serie A (Italia)</option>
+      <option value="bundesliga">Bundesliga (Jerman)</option>
+      <option value="ligue-1">Ligue 1 (Prancis)</option>
+      <option value="saudi-pro-league">Saudi Pro League</option>
+      <option value="j1-league">J1 League (Jepang)</option>
+      <option value="mls">MLS (Amerika Serikat)</option>
+      <option value="liga-1-indonesia">Liga 1 (Indonesia)</option>
+    </select>
+
+    <label>Pilih Tim</label>
+    <div class="vs-row">
+      <select id="timA">
+        <option value="">Tim A</option>
+      </select>
+      <span class="vs-badge">VS</span>
+      <select id="timB">
+        <option value="">Tim B</option>
+      </select>
+    </div>
+
+    <button id="btnPrediksi">🔮 Prediksi Sekarang</button>
+
+    <div class="result" id="result">
+      <div class="result-title" id="resultTitle"></div>
+      <div class="bar-item">
+        <div class="bar-label"><span id="labelA">Tim A</span><span id="pctA">0%</span></div>
+        <div class="bar-track"><div class="bar-fill bar-a" id="fillA"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label"><span>Draw</span><span id="pctDraw">0%</span></div>
+        <div class="bar-track"><div class="bar-fill bar-draw" id="fillDraw"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label"><span id="labelB">Tim B</span><span id="pctB">0%</span></div>
+        <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
+      </div>
+      <div class="winner" id="winner"></div>
+    </div>
+  </div>
+
+  <script>
+    // Data tim sementara (nanti diganti dengan API / JSON)
+    const teamsData = {
+      'premier-league': ['Manchester City', 'Arsenal', 'Liverpool', 'Chelsea', 'Manchester United', 'Tottenham', 'Newcastle', 'Aston Villa'],
+      'la-liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Real Sociedad', 'Villarreal', 'Valencia', 'Betis'],
+      'serie-a': ['Inter Milan', 'AC Milan', 'Juventus', 'Napoli', 'Roma', 'Lazio', 'Atalanta', 'Fiorentina'],
+      'bundesliga': ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen', 'Union Berlin', 'Freiburg', 'Stuttgart', 'Wolfsburg'],
+      'ligue-1': ['PSG', 'Marseille', 'Monaco', 'Lyon', 'Lille', 'Nice', 'Rennes', 'Lens'],
+      'saudi-pro-league': ['Al Hilal', 'Al Nassr', 'Al Ittihad', 'Al Ahli', 'Al Shabab', 'Al Ettifaq', 'Al Taawoun', 'Al Fateh'],
+      'j1-league': ['Yokohama F. Marinos', 'Kawasaki Frontale', 'Vissel Kobe', 'Urawa Reds', 'Kashima Antlers', 'Sanfrecce Hiroshima', 'FC Tokyo', 'Cerezo Osaka'],
+      'mls': ['Inter Miami', 'LAFC', 'LA Galaxy', 'Seattle Sounders', 'Atlanta United', 'Austin FC', 'New York City FC', 'Philadelphia Union'],
+      'liga-1-indonesia': ['Persija Jakarta', 'Persib Bandung', 'Arema FC', 'Bali United', 'PSM Makassar', 'Bhayangkara FC', 'Persebaya', 'Madura United']
+    };
+
+    const ligaSelect = document.getElementById('liga');
+    const timASelect = document.getElementById('timA');
+    const timBSelect = document.getElementById('timB');
+    const btnPrediksi = document.getElementById('btnPrediksi');
+    const resultDiv = document.getElementById('result');
+
+    // Isi dropdown tim saat liga dipilih
+    ligaSelect.addEventListener('change', () => {
+      const liga = ligaSelect.value;
+      timASelect.innerHTML = '<option value="">Tim A</option>';
+      timBSelect.innerHTML = '<option value="">Tim B</option>';
+
+      if (liga && teamsData[liga]) {
+        teamsData[liga].forEach(team => {
+          timASelect.innerHTML += `<option value="${team}">${team}</option>`;
+          timBSelect.innerHTML += `<option value="${team}">${team}</option>`;
+        });
+      }
+
+      resultDiv.classList.remove('show');
+    });
+
+    // Tombol prediksi
+    btnPrediksi.addEventListener('click', () => {
+      const timA = timASelect.value;
+      const timB = timBSelect.value;
+
+      if (!timA || !timB) {
+        alert('Pilih Tim A dan Tim B dulu bre!');
+        return;
+      }
+      if (timA === timB) {
+        alert('Tim A dan Tim B gak boleh sama bre!');
+        return;
+      }
+
+      // 🔮 Rumus prediksi sementara (dummy, nanti diganti API)
+      const randomA = Math.floor(Math.random() * 40) + 30;
+      const randomDraw = Math.floor(Math.random() * 15) + 15;
+      const randomB = 100 - randomA - randomDraw;
+
+      document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
+      document.getElementById('labelA').textContent = timA;
+      document.getElementById('labelB').textContent = timB;
+      document.getElementById('pctA').textContent = randomA + '%';
+      document.getElementById('pctDraw').textContent = randomDraw + '%';
+      document.getElementById('pctB').textContent = randomB + '%';
+
+      resultDiv.classList.add('show');
+
+      // Animasi bar
+      setTimeout(() => {
+        document.getElementById('fillA').style.width = randomA + '%';
+        document.getElementById('fillDraw').style.width = randomDraw + '%';
+        document.getElementById('fillB').style.width = randomB + '%';
+      }, 100);
+
+      // Pemenang
+      let winnerText = '';
+      if (randomA > randomB && randomA > randomDraw) winnerText = `🏆 Unggulan: <strong>${timA}</strong>`;
+      else if (randomB > randomA && randomB > randomDraw) winnerText = `🏆 Unggulan: <strong>${timB}</strong>`;
+      else winnerText = `🤝 Prediksi: <strong>Draw</strong>`;
+
+      document.getElementById('winner').innerHTML = winnerText;
+    });
+  </script>
+</body>
+</html>
