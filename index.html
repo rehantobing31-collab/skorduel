@@ -23,17 +23,13 @@
       user-select: none; -webkit-user-select: none; -moz-user-select: none;
     }
 
-    /* ⚽ BOLA BERTERBANGAN */
     .balls-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 0; overflow: hidden;
     }
     .ball {
-      position: absolute;
-      font-size: 24px;
-      opacity: 0.12;
-      animation: floatBall linear infinite;
-      filter: blur(0.3px);
+      position: absolute; font-size: 24px; opacity: 0.12;
+      animation: floatBall linear infinite; filter: blur(0.3px);
     }
     @keyframes floatBall {
       0%   { transform: translateY(0) rotate(0deg) translateX(0); }
@@ -45,17 +41,12 @@
 
     .container {
       width: 100%; max-width: 500px; position: relative; z-index: 1;
-      background: #ffffff;
-      border: 1px solid rgba(5, 150, 105, 0.15);
-      border-radius: 20px;
-      padding: 32px 28px;
-      box-shadow:
-        0 20px 60px rgba(5, 150, 105, 0.08),
-        0 4px 16px rgba(0, 0, 0, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      background: #ffffff; border: 1px solid rgba(5, 150, 105, 0.15);
+      border-radius: 20px; padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(5, 150, 105, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
-    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .header-top { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; }
     .header-top button {
       background: transparent; border: 1px solid rgba(5, 150, 105, 0.25);
       color: #059669; font-size: 11px; padding: 6px 12px; border-radius: 8px;
@@ -84,14 +75,10 @@
     }
     .mode-tabs button.active {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+      color: #ffffff; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
     }
 
-    label {
-      display: block; font-size: 11px; font-weight: 600; color: #475569;
-      margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;
-    }
+    label { display: block; font-size: 11px; font-weight: 600; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
 
     select {
       width: 100%; padding: 14px 16px; background: #ffffff;
@@ -108,8 +95,7 @@
     .vs-row select { margin-bottom: 0; flex: 1; min-width: 0; }
     .vs-badge {
       font-size: 11px; font-weight: 800; color: #059669;
-      padding: 0 6px; letter-spacing: 1px;
-      background: #d1fae5; border-radius: 6px; padding: 4px 6px;
+      letter-spacing: 1px; background: #d1fae5; border-radius: 6px; padding: 4px 6px;
     }
 
     .logo-preview {
@@ -138,7 +124,6 @@
       box-shadow: 0 8px 24px rgba(5, 150, 105, 0.25);
     }
     #btnPrediksi:hover, #btnCompare:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(5, 150, 105, 0.4); filter: brightness(1.05); }
-    #btnPrediksi:active, #btnCompare:active { transform: translateY(0); }
 
     .result {
       margin-top: 20px; padding: 20px; background: #f0fdf4;
@@ -147,8 +132,31 @@
     .result.show { display: block; animation: fadeIn 0.5s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .result-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 16px; }
+    .result-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 14px; }
     .result-title strong { color: #0f172a; font-size: 14px; font-weight: 700; }
+
+    /* SCORE PREDICTION BOX */
+    .score-prediction {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      margin: 14px 0 18px; padding: 16px 12px;
+      background: #ffffff; border-radius: 14px;
+      border: 2px solid rgba(16, 185, 129, 0.25);
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.08);
+    }
+    .score-team { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; min-width: 0; }
+    .score-team-name { font-size: 10px; color: #64748b; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; letter-spacing: 0.3px; }
+    .score-num {
+      font-size: 32px; font-weight: 800; color: #059669;
+      line-height: 1; letter-spacing: -1px;
+    }
+    .score-divider {
+      font-size: 20px; color: #94a3b8; font-weight: 300;
+      padding: 0 4px;
+    }
+    .score-label {
+      text-align: center; font-size: 10px; color: #94a3b8;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+    }
 
     .bar-item { margin-bottom: 14px; }
     .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #334155; font-weight: 500; }
@@ -168,8 +176,7 @@
     .share-btn {
       flex: 1; padding: 10px 4px; background: #ffffff;
       border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px;
-      color: #475569; font-size: 10px; font-weight: 600; cursor: pointer;
-      transition: all 0.2s;
+      color: #475569; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;
     }
     .share-btn:hover { background: #f0fdf4; border-color: #10b981; color: #059669; transform: translateY(-1px); }
     .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
@@ -219,10 +226,7 @@
       background: #ffffff; border-radius: 10px; margin-bottom: 8px;
       border: 1px solid rgba(16, 185, 129, 0.15);
     }
-    .compare-team-row.winner-row {
-      border-color: #10b981; background: #ecfdf5;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
-    }
+    .compare-team-row.winner-row { border-color: #10b981; background: #ecfdf5; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15); }
     .compare-logo {
       width: 36px; height: 36px; border-radius: 50%;
       background: #ffffff; border: 1px solid rgba(16, 185, 129, 0.3);
@@ -245,8 +249,7 @@
     .modal-content {
       background: #ffffff; border: 1px solid rgba(16, 185, 129, 0.2);
       border-radius: 18px; padding: 26px 22px; max-width: 420px; width: 100%;
-      max-height: 80vh; overflow-y: auto;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+      max-height: 80vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
     }
     .modal-content h2 { font-size: 20px; color: #059669; margin-bottom: 16px; text-align: center; }
     .modal-content h3 { font-size: 13px; color: #059669; margin-top: 14px; margin-bottom: 8px; }
@@ -263,13 +266,11 @@
   </style>
 </head>
 <body>
-  <!-- ⚽ BOLA BERTERBANGAN -->
   <div class="balls-container" id="ballsContainer"></div>
 
   <div class="container">
     <div class="header-top">
       <button onclick="openModal('howto')">❓ Cara Kerja</button>
-      <button onclick="openModal('about')">ℹ️ About</button>
     </div>
 
     <div class="logo">
@@ -283,7 +284,6 @@
       <button id="tabCompare" onclick="switchMode('compare')">🏆 Compare 4</button>
     </div>
 
-    <!-- MODE DUEL -->
     <div id="modeDuel">
       <label for="liga">Pilih Liga</label>
       <select id="liga">
@@ -328,6 +328,20 @@
 
       <div class="result" id="result">
         <div class="result-title" id="resultTitle"></div>
+
+        <div class="score-label">Prediksi Skor</div>
+        <div class="score-prediction">
+          <div class="score-team">
+            <div class="score-num" id="scoreA">0</div>
+            <div class="score-team-name" id="scoreNameA">Tim A</div>
+          </div>
+          <div class="score-divider">—</div>
+          <div class="score-team">
+            <div class="score-num" id="scoreB">0</div>
+            <div class="score-team-name" id="scoreNameB">Tim B</div>
+          </div>
+        </div>
+
         <div class="bar-item">
           <div class="bar-label"><span id="labelA">Tim A</span><span id="pctA">0%</span></div>
           <div class="bar-track"><div class="bar-fill bar-a" id="fillA"></div></div>
@@ -350,7 +364,6 @@
       </div>
     </div>
 
-    <!-- MODE COMPARE -->
     <div id="modeCompare" style="display:none;">
       <label>Pilih Liga</label>
       <select id="ligaCompare">
@@ -395,7 +408,7 @@
       </div>
     </div>
 
-    <div class="watermark">© 2025 SKORDUEL — ALL RIGHTS RESERVED</div>
+    <div class="watermark">© 2026 SKORDUEL — ALL RIGHTS RESERVED</div>
   </div>
 
   <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
@@ -403,7 +416,6 @@
   </div>
 
   <script>
-    // 🔒 Anti-copy
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('selectstart', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
@@ -416,7 +428,6 @@
     });
     console.log = console.warn = console.error = () => {};
 
-    // ⚽ GENERATE BOLA BERTERBANGAN
     (function createBalls() {
       const container = document.getElementById('ballsContainer');
       const ballCount = 14;
@@ -495,10 +506,7 @@
         const res = await fetch(`${API_URL}/?liga=${liga}`);
         if (!res.ok) throw new Error('API error');
         const data = await res.json();
-        if (data.teams) {
-          apiCache[liga] = data.teams;
-          return data.teams;
-        }
+        if (data.teams) { apiCache[liga] = data.teams; return data.teams; }
         throw new Error('No teams');
       } catch (e) {
         const fb = teamsDataFallback[liga] || {};
@@ -545,6 +553,25 @@
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
+    // 🎯 HITUNG PREDIKSI SKOR
+    function predictScore(skorA, skorB) {
+      // Basis: 2.7 gol rata-rata per pertandingan
+      const total = skorA + skorB;
+      const baseGoals = 2.7;
+      const ratioA = skorA / total;
+      const ratioB = skorB / total;
+
+      // Prediksi gol (dengan sedikit random biar natural)
+      let golA = Math.round(baseGoals * ratioA + (Math.random() * 0.6 - 0.3));
+      let golB = Math.round(baseGoals * ratioB + (Math.random() * 0.6 - 0.3));
+
+      // Clamp 0-5
+      golA = Math.max(0, Math.min(5, golA));
+      golB = Math.max(0, Math.min(5, golB));
+
+      return { golA, golB };
+    }
+
     btnPrediksi.addEventListener('click', () => {
       const timA = timASelect.value, timB = timBSelect.value, liga = ligaSelect.value;
       if (!timA || !timB) { alert('Pilih Tim A dan Tim B dulu bre!'); return; }
@@ -565,12 +592,22 @@
       const pctB = Math.round((skorB / total) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
+      // Prediksi skor
+      const { golA, golB } = predictScore(skorA, skorB);
+
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
       document.getElementById('labelA').textContent = timA;
       document.getElementById('labelB').textContent = timB;
       document.getElementById('pctA').textContent = pctA + '%';
       document.getElementById('pctDraw').textContent = pctDraw + '%';
       document.getElementById('pctB').textContent = pctB + '%';
+
+      // Update skor prediksi
+      document.getElementById('scoreA').textContent = golA;
+      document.getElementById('scoreB').textContent = golB;
+      document.getElementById('scoreNameA').textContent = timA;
+      document.getElementById('scoreNameB').textContent = timB;
+
       resultDiv.classList.add('show');
 
       document.getElementById('fillA').style.width = '0';
@@ -588,8 +625,11 @@
       else winnerText = `🤝 Prediksi: <strong>Draw</strong>`;
       document.getElementById('winner').innerHTML = winnerText;
 
-      lastResult = { timA, timB, pctA, pctB, pctDraw, winner: winnerText.replace(/<[^>]*>/g, '') };
-      saveHistory({ match: `${timA} vs ${timB}`, winner: winnerText.replace(/<[^>]*>/g, '').replace('🏆 Unggulan: ','').replace('🤝 Prediksi: ','') });
+      lastResult = { timA, timB, pctA, pctB, pctDraw, golA, golB, winner: winnerText.replace(/<[^>]*>/g, '') };
+      saveHistory({
+        match: `${timA} vs ${timB}`,
+        winner: `${golA}-${golB}`
+      });
     });
 
     const ligaCompare = document.getElementById('ligaCompare');
@@ -685,46 +725,38 @@
 
     function shareTo(platform) {
       if (!lastResult.timA) { alert('Prediksi dulu bre sebelum share!'); return; }
-      const { timA, timB, pctA, pctB, pctDraw, winner } = lastResult;
-      const text = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek prediksi tim favoritmu di:\nhttps://skorduel.pages.dev`;
+      const { timA, timB, pctA, pctB, pctDraw, golA, golB, winner } = lastResult;
+      const text = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🎯 *Prediksi Skor: ${golA} - ${golB}*\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek prediksi tim favoritmu di:\nhttps://skorduel.pages.dev`;
 
       if (platform === 'wa') window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-      else if (platform === 'tw') { const t = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nskorduel.pages.dev`; window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}`, '_blank'); }
+      else if (platform === 'tw') { const t = `⚽ ${timA} vs ${timB}\n🎯 Prediksi: ${golA}-${golB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nskorduel.pages.dev`; window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}`, '_blank'); }
       else if (platform === 'copy') { navigator.clipboard.writeText(text).then(() => alert('✅ Di-copy!')).catch(() => alert('❌ Gagal copy')); }
       else if (platform === 'link') { navigator.clipboard.writeText('https://skorduel.pages.dev').then(() => alert('✅ Link SkorDuel di-copy!')).catch(() => alert('❌ Gagal copy')); }
     }
 
     const modalData = {
       howto: `<h2>❓ Cara Kerja SkorDuel</h2>
-        <p>SkorDuel menggunakan <strong>model statistik sederhana</strong> berbasis performa tim untuk memprediksi peluang menang.</p>
+        <p>SkorDuel menggunakan <strong>model statistik sederhana</strong> berbasis performa tim untuk memprediksi peluang menang dan skor akhir.</p>
         <h3>📊 Sumber Data</h3>
         <ul>
           <li><strong>Liga top Eropa</strong> (PL, La Liga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Championship): data live dari Football-Data.org</li>
           <li><strong>Liga lainnya</strong>: data manual berdasarkan peringkat terkini</li>
         </ul>
-        <h3>🧮 Rumus Prediksi</h3>
+        <h3>🧮 Rumus Peluang Menang</h3>
         <ul>
           <li>Skor kekuatan = (poin/pertandingan ÷ poin maks) × 45 + 50</li>
           <li>Peluang menang = (skor tim ÷ total skor) × 85%</li>
           <li>Draw = 15% (bobot tetap)</li>
         </ul>
-        <h3>⚠️ Disclaimer</h3>
-        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Gunakan sebagai referensi, bukan patokan mutlak.</p>
-        <button class="modal-close" onclick="closeModal()">Mengerti</button>`,
-      about: `<h2>ℹ️ Tentang SkorDuel</h2>
-        <p>SkorDuel adalah <strong>alat prediksi pertandingan sepak bola</strong> sederhana yang menggabungkan data live dengan analisis statistik.</p>
-        <h3>🎯 Tujuan</h3>
-        <p>Memberikan gambaran cepat peluang menang antar tim, tanpa perlu hitung manual.</p>
-        <h3>🛠️ Teknologi</h3>
+        <h3>🎯 Rumus Prediksi Skor</h3>
         <ul>
-          <li>Cloudflare Pages (hosting)</li>
-          <li>Cloudflare Workers (API proxy)</li>
-          <li>Football-Data.org (data klasemen)</li>
-          <li>HTML/CSS/JavaScript murni</li>
+          <li>Rata-rata gol per pertandingan: 2.7</li>
+          <li>Gol tim = rasio kekuatan × 2.7 + variasi kecil</li>
+          <li>Hasil dibulatkan ke bilangan bulat (0-5)</li>
         </ul>
-        <h3>📅 Versi</h3>
-        <p>v3.0 — 2025 (tema hijau mint + bola animasi)</p>
-        <button class="modal-close" onclick="closeModal()">Tutup</button>`
+        <h3>⚠️ Disclaimer</h3>
+        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Faktor tak terduga (cedera, cuaca, mental) tidak dihitung. Gunakan sebagai referensi, bukan patokan mutlak.</p>
+        <button class="modal-close" onclick="closeModal()">Mengerti</button>`
     };
 
     function openModal(type) {
