@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="ballGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="50%" stop-color="#00cc66"/>
+      <stop offset="100%" stop-color="#006633"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0044"/>
+      <stop offset="25%" stop-color="#ffaa00"/>
+      <stop offset="50%" stop-color="#00ff88"/>
+      <stop offset="75%" stop-color="#00aaff"/>
+      <stop offset="100%" stop-color="#aa00ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#0a0a0f"/>
+  
+  <!-- Rainbow ring -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="url(#ringGrad)" stroke-width="6" opacity="0.9"/>
+  <circle cx="100" cy="100" r="78" fill="none" stroke="url(#ringGrad)" stroke-width="3" opacity="0.5"/>
+  
+  <!-- Inner glow ring -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Soccer ball -->
+  <circle cx="100" cy="100" r="45" fill="url(#ballGrad)" filter="url(#glow)"/>
+  
+  <!-- Ball pentagons (simplified soccer pattern) -->
+  <polygon points="100,70 115,80 110,98 90,98 85,80" fill="#0a0a0f" opacity="0.85"/>
+  <polygon points="75,90 85,95 83,108 70,108 65,95" fill="#0a0a0f" opacity="0.7"/>
+  <polygon points="125,90 135,95 133,108 120,108 115,95" fill="#0a0a0f" opacity="0.7"/>
+  <polygon points="90,115 110,115 108,128 92,128" fill="#0a0a0f" opacity="0.7"/>
+  
+  <!-- Highlight -->
+  <circle cx="85" cy="85" r="12" fill="#ffffff" opacity="0.15"/>
+  
+  <!-- Bottom text SKORDUEL -->
+  <text x="100" y="175" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="22" fill="#ffffff" stroke="#00ff88" stroke-width="1.5" letter-spacing="1">SKORDUEL</text>
+</svg>
