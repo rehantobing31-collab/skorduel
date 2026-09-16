@@ -237,7 +237,6 @@
       filter: brightness(1.05);
     }
 
-    /* Share modal grid */
     .share-modal-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 10px; margin-top: 8px;
@@ -438,7 +437,6 @@
           <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
         </div>
 
-        <!-- 🏆 TIM UNGGULAN BESAR -->
         <div class="winner-team" id="winnerTeam" style="display:none;">
           <div class="winner-crown" id="winnerCrown">🏆</div>
           <div class="winner-logo" id="winnerLogo"></div>
@@ -447,7 +445,6 @@
           <div class="winner-pct-big" id="winnerPct">0<span>%</span></div>
         </div>
 
-        <!-- 📤 TOMBOL SHARE UTAMA -->
         <button class="share-main-btn" onclick="openShareModal()">📤 Bagikan Hasil Prediksi</button>
       </div>
     </div>
@@ -641,16 +638,50 @@
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
-    function predictScore(skorA, skorB) {
+    // 🎯 PREDIKSI SKOR SINKRON DENGAN PERSENTASE
+    function predictScore(skorA, skorB, pctA, pctB, pctDraw) {
       const total = skorA + skorB;
       const baseGoals = 2.7;
       const ratioA = skorA / total;
       const ratioB = skorB / total;
+      const selisih = Math.abs(pctA - pctB);
+
+      // Tentukan mode hasil berdasarkan selisih persentase
+      let mode;
+      if (selisih < 5) {
+        mode = 'draw'; // selisih tipis → draw
+      } else if (pctA > pctB) {
+        mode = 'A'; // A unggul
+      } else {
+        mode = 'B'; // B unggul
+      }
+
+      // Hitung gol dasar
       let golA = Math.round(baseGoals * ratioA + (Math.random() * 0.6 - 0.3));
       let golB = Math.round(baseGoals * ratioB + (Math.random() * 0.6 - 0.3));
+
+      // Clamp 0-5
       golA = Math.max(0, Math.min(5, golA));
       golB = Math.max(0, Math.min(5, golB));
-      return { golA, golB };
+
+      // Sinkronkan dengan mode
+      if (mode === 'draw') {
+        const drawScore = Math.max(golA, golB);
+        golA = drawScore;
+        golB = drawScore;
+      } else if (mode === 'A') {
+        if (golA <= golB) {
+          golA = golB + 1 + Math.floor(Math.random() * 2);
+          if (golA > 5) { golA = 5; golB = Math.max(0, 4 - Math.floor(Math.random() * 2)); }
+        }
+      } else if (mode === 'B') {
+        if (golB <= golA) {
+          golB = golA + 1 + Math.floor(Math.random() * 2);
+          if (golB > 5) { golB = 5; golA = Math.max(0, 4 - Math.floor(Math.random() * 2)); }
+        }
+      }
+
+      return { golA, golB, mode };
     }
 
     btnPrediksi.addEventListener('click', () => {
@@ -673,7 +704,8 @@
       const pctB = Math.round((skorB / total) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
-      const { golA, golB } = predictScore(skorA, skorB);
+      // 🔥 PREDIKSI SKOR SINKRON
+      const { golA, golB, mode } = predictScore(skorA, skorB, pctA, pctB, pctDraw);
 
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
       document.getElementById('labelA').textContent = timA;
@@ -698,7 +730,7 @@
         document.getElementById('fillB').style.width = pctB + '%';
       }, 100);
 
-      // 🏆 TENTUKAN UNGGULAN
+      // 🏆 TENTUKAN UNGGULAN — pakai `mode` dari predictScore biar sinkron
       let winnerText = '';
       let winnerTeamName = '';
       let winnerPct = 0;
@@ -707,10 +739,10 @@
 
       const dataTim = apiCache[liga] || {};
 
-      if (pctA > pctB && pctA > pctDraw) {
+      if (mode === 'A') {
         winnerTeamName = timA; winnerPct = pctA; winnerText = `🏆 Unggulan: ${timA}`;
         winnerLogoUrl = dataTim[timA]?.logo || '';
-      } else if (pctB > pctA && pctB > pctDraw) {
+      } else if (mode === 'B') {
         winnerTeamName = timB; winnerPct = pctB; winnerText = `🏆 Unggulan: ${timB}`;
         winnerLogoUrl = dataTim[timB]?.logo || '';
       } else {
@@ -844,7 +876,6 @@
       renderHistory([]);
     }
 
-    // 📤 SHARE MODAL
     function openShareModal() {
       if (!lastResult.timA) {
         alert('Prediksi dulu bre sebelum share!');
@@ -862,27 +893,13 @@
           ${timA} <strong style="color:#059669;">${golA} - ${golB}</strong> ${timB}
         </p>
         <div class="share-modal-grid">
-          <a class="share-modal-item wa" onclick="doShare('wa')">
-            <span class="icon">📱</span>WhatsApp
-          </a>
-          <a class="share-modal-item tg" onclick="doShare('tg')">
-            <span class="icon">✈️</span>Telegram
-          </a>
-          <a class="share-modal-item tw" onclick="doShare('tw')">
-            <span class="icon">🐦</span>Twitter / X
-          </a>
-          <a class="share-modal-item fb" onclick="doShare('fb')">
-            <span class="icon">📘</span>Facebook
-          </a>
-          <a class="share-modal-item copy" onclick="doShare('copy')">
-            <span class="icon">🔗</span>Copy Teks
-          </a>
-          <a class="share-modal-item link" onclick="doShare('link')">
-            <span class="icon">📋</span>Copy Link
-          </a>
-          <a class="share-modal-item native" onclick="doShare('native')" id="nativeShareBtn" style="grid-column: 1 / -1;">
-            <span class="icon">📲</span>Bagikan via Aplikasi Lain
-          </a>
+          <a class="share-modal-item wa" onclick="doShare('wa')"><span class="icon">📱</span>WhatsApp</a>
+          <a class="share-modal-item tg" onclick="doShare('tg')"><span class="icon">✈️</span>Telegram</a>
+          <a class="share-modal-item tw" onclick="doShare('tw')"><span class="icon">🐦</span>Twitter / X</a>
+          <a class="share-modal-item fb" onclick="doShare('fb')"><span class="icon">📘</span>Facebook</a>
+          <a class="share-modal-item copy" onclick="doShare('copy')"><span class="icon">🔗</span>Copy Teks</a>
+          <a class="share-modal-item link" onclick="doShare('link')"><span class="icon">📋</span>Copy Link</a>
+          <a class="share-modal-item native" onclick="doShare('native')" id="nativeShareBtn" style="grid-column: 1 / -1;"><span class="icon">📲</span>Bagikan via Aplikasi Lain</a>
         </div>
         <button class="modal-close" onclick="closeModal()" style="margin-top:16px;">Tutup</button>
       `;
@@ -936,7 +953,7 @@
         <p>SkorDuel menggunakan <strong>model statistik sederhana</strong> berbasis performa tim untuk memprediksi peluang menang dan skor akhir.</p>
         <h3>📊 Sumber Data</h3>
         <ul>
-          <li><strong>Liga top Eropa</strong> (PL, La Liga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Championship): data live dari Football-Data.org</li>
+          <li><strong>Liga top Eropa</strong>: data live dari Football-Data.org</li>
           <li><strong>Liga lainnya</strong>: data manual berdasarkan peringkat terkini</li>
         </ul>
         <h3>🧮 Rumus Peluang Menang</h3>
@@ -947,12 +964,12 @@
         </ul>
         <h3>🎯 Rumus Prediksi Skor</h3>
         <ul>
-          <li>Rata-rata gol per pertandingan: 2.7</li>
-          <li>Gol tim = rasio kekuatan × 2.7 + variasi kecil</li>
-          <li>Hasil dibulatkan ke bilangan bulat (0-5)</li>
+          <li>Selisih persentase < 5% → <strong>draw</strong></li>
+          <li>Selisih ≥ 5% → tim unggulan <strong>harus menang</strong></li>
+          <li>Skor dasar dari rasio kekuatan × 2.7 gol rata-rata</li>
         </ul>
         <h3>⚠️ Disclaimer</h3>
-        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Faktor tak terduga (cedera, cuaca, mental) tidak dihitung. Gunakan sebagai referensi, bukan patokan mutlak.</p>
+        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Gunakan sebagai referensi, bukan patokan mutlak.</p>
         <button class="modal-close" onclick="closeModal()">Mengerti</button>`
     };
 
