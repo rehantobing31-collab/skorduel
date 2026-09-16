@@ -8,6 +8,42 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ .share-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.share-btn {
+  flex: 1;
+  padding: 10px 8px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  color: #d4d4d8;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  box-shadow: none;
+  margin-top: 0;
+}
+
+.share-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: #d4af37;
+  color: #d4af37;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.share-btn.wa:hover { color: #25d366; border-color: #25d366; }
+.share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
+.share-btn.copy:hover { color: #d4af37; }
   <style>
     * {
       margin: 0;
@@ -323,6 +359,44 @@
     <div class="watermark">© 2025 SKORDUEL — ALL RIGHTS RESERVED</div>
   </div>
 
+  // 📤 Fungsi share hasil prediksi
+let lastResult = {};
+
+function shareTo(platform) {
+  const timA = lastResult.timA || '-';
+  const timB = lastResult.timB || '-';
+  const pctA = lastResult.pctA || 0;
+  const pctB = lastResult.pctB || 0;
+  const pctDraw = lastResult.pctDraw || 0;
+  const winner = lastResult.winner || '-';
+
+  const text =
+`⚽ *SkorDuel* — Prediksi Pertandingan
+
+${timA} vs ${timB}
+
+🏆 ${timA}: ${pctA}%
+🤝 Draw: ${pctDraw}%
+🏆 ${timB}: ${pctB}%
+
+${winner}
+
+🔮 Cek prediksi tim favoritmu di:
+https://skorduel.pages.dev`;
+
+  if (platform === 'wa') {
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  } else if (platform === 'tw') {
+    const twText = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nCek di skorduel.pages.dev`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twText)}`, '_blank');
+  } else if (platform === 'copy') {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('✅ Hasil prediksi berhasil di-copy!');
+    }).catch(() => {
+      alert('❌ Gagal copy, coba lagi ya bre');
+    });
+  }
+}
   <script>
     // 🔒 Proteksi anti-copy
     document.addEventListener('contextmenu', e => e.preventDefault());
@@ -462,6 +536,12 @@
       else winnerText = `🤝 Prediksi: <strong>Draw</strong>`;
 
       document.getElementById('winner').innerHTML = winnerText;
+
+// Simpan untuk fitur share
+lastResult = {
+  timA, timB, pctA, pctB, pctDraw,
+  winner: winnerText.replace(/<[^>]*>/g, '') // hapus tag HTML
+};
     });
   </script>
 </body>
