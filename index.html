@@ -4,46 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkorDuel — Prediksi Tim A vs Tim B</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
- .share-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.share-btn {
-  flex: 1;
-  padding: 10px 8px;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 8px;
-  color: #d4d4d8;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.3px;
-  text-transform: none;
-  box-shadow: none;
-  margin-top: 0;
-}
-
-.share-btn:hover {
-  background: rgba(212, 175, 55, 0.15);
-  border-color: #d4af37;
-  color: #d4af37;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-}
-
-.share-btn.wa:hover { color: #25d366; border-color: #25d366; }
-.share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
-.share-btn.copy:hover { color: #d4af37; }
   <style>
     * {
       margin: 0;
@@ -184,7 +148,7 @@
       letter-spacing: 1px;
     }
 
-    button {
+    #btnPrediksi {
       width: 100%;
       padding: 16px;
       background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
@@ -201,12 +165,12 @@
       box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
     }
 
-    button:hover {
+    #btnPrediksi:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
     }
 
-    button:active {
+    #btnPrediksi:active {
       transform: translateY(0);
     }
 
@@ -290,6 +254,39 @@
       font-weight: 700;
     }
 
+    .share-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .share-btn {
+      flex: 1;
+      padding: 10px 8px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      color: #d4d4d8;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .share-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: #d4af37;
+      color: #d4af37;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+
+    .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
+    .share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
+
     .watermark {
       text-align: center;
       font-size: 10px;
@@ -349,54 +346,17 @@
         <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
       </div>
       <div class="winner" id="winner"></div>
+
       <div class="share-row">
-  <button class="share-btn wa" onclick="shareTo('wa')">📱 WhatsApp</button>
-  <button class="share-btn tw" onclick="shareTo('tw')">🐦 Twitter</button>
-  <button class="share-btn copy" onclick="shareTo('copy')">🔗 Copy Link</button>
-</div>
+        <button class="share-btn wa" onclick="shareTo('wa')">📱 WhatsApp</button>
+        <button class="share-btn tw" onclick="shareTo('tw')">🐦 Twitter</button>
+        <button class="share-btn copy" onclick="shareTo('copy')">🔗 Copy</button>
+      </div>
     </div>
 
     <div class="watermark">© 2025 SKORDUEL — ALL RIGHTS RESERVED</div>
   </div>
 
-  // 📤 Fungsi share hasil prediksi
-let lastResult = {};
-
-function shareTo(platform) {
-  const timA = lastResult.timA || '-';
-  const timB = lastResult.timB || '-';
-  const pctA = lastResult.pctA || 0;
-  const pctB = lastResult.pctB || 0;
-  const pctDraw = lastResult.pctDraw || 0;
-  const winner = lastResult.winner || '-';
-
-  const text =
-`⚽ *SkorDuel* — Prediksi Pertandingan
-
-${timA} vs ${timB}
-
-🏆 ${timA}: ${pctA}%
-🤝 Draw: ${pctDraw}%
-🏆 ${timB}: ${pctB}%
-
-${winner}
-
-🔮 Cek prediksi tim favoritmu di:
-https://skorduel.pages.dev`;
-
-  if (platform === 'wa') {
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-  } else if (platform === 'tw') {
-    const twText = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nCek di skorduel.pages.dev`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twText)}`, '_blank');
-  } else if (platform === 'copy') {
-    navigator.clipboard.writeText(text).then(() => {
-      alert('✅ Hasil prediksi berhasil di-copy!');
-    }).catch(() => {
-      alert('❌ Gagal copy, coba lagi ya bre');
-    });
-  }
-}
   <script>
     // 🔒 Proteksi anti-copy
     document.addEventListener('contextmenu', e => e.preventDefault());
@@ -414,7 +374,6 @@ https://skorduel.pages.dev`;
       }
     });
 
-    // Override console biar gak gampang inspect
     console.log = console.warn = console.error = () => {};
 
     // 📊 Data skor kekuatan tim
@@ -463,6 +422,8 @@ https://skorduel.pages.dev`;
     const btnPrediksi = document.getElementById('btnPrediksi');
     const resultDiv = document.getElementById('result');
 
+    let lastResult = {};
+
     // Isi dropdown tim saat liga dipilih
     ligaSelect.addEventListener('change', () => {
       const liga = ligaSelect.value;
@@ -494,19 +455,15 @@ https://skorduel.pages.dev`;
         return;
       }
 
-      // 🔮 Rumus prediksi berbasis skor kekuatan
-      const dataTim = teamsData[liga];
+      const dataTim = teamsData[liga] || {};
       const skorA = dataTim[timA] || 75;
       const skorB = dataTim[timB] || 75;
 
       const totalSkor = skorA + skorB;
       const drawWeight = 15;
 
-      const rawA = (skorA / totalSkor) * (100 - drawWeight);
-      const rawB = (skorB / totalSkor) * (100 - drawWeight);
-
-      const pctA = Math.round(rawA);
-      const pctB = Math.round(rawB);
+      const pctA = Math.round((skorA / totalSkor) * (100 - drawWeight));
+      const pctB = Math.round((skorB / totalSkor) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
@@ -518,7 +475,6 @@ https://skorduel.pages.dev`;
 
       resultDiv.classList.add('show');
 
-      // Reset bar dulu biar animasi jalan
       document.getElementById('fillA').style.width = '0';
       document.getElementById('fillDraw').style.width = '0';
       document.getElementById('fillB').style.width = '0';
@@ -529,7 +485,6 @@ https://skorduel.pages.dev`;
         document.getElementById('fillB').style.width = pctB + '%';
       }, 100);
 
-      // Pemenang
       let winnerText = '';
       if (pctA > pctB && pctA > pctDraw) winnerText = `🏆 Unggulan: <strong>${timA}</strong>`;
       else if (pctB > pctA && pctB > pctDraw) winnerText = `🏆 Unggulan: <strong>${timB}</strong>`;
@@ -537,12 +492,49 @@ https://skorduel.pages.dev`;
 
       document.getElementById('winner').innerHTML = winnerText;
 
-// Simpan untuk fitur share
-lastResult = {
-  timA, timB, pctA, pctB, pctDraw,
-  winner: winnerText.replace(/<[^>]*>/g, '') // hapus tag HTML
-};
+      // Simpan untuk fitur share
+      lastResult = {
+        timA, timB, pctA, pctB, pctDraw,
+        winner: winnerText.replace(/<[^>]*>/g, '')
+      };
     });
+
+    // 📤 Fungsi share hasil prediksi
+    function shareTo(platform) {
+      if (!lastResult.timA) {
+        alert('Prediksi dulu bre sebelum share!');
+        return;
+      }
+
+      const { timA, timB, pctA, pctB, pctDraw, winner } = lastResult;
+
+      const text =
+`⚽ *SkorDuel* — Prediksi Pertandingan
+
+${timA} vs ${timB}
+
+🏆 ${timA}: ${pctA}%
+🤝 Draw: ${pctDraw}%
+🏆 ${timB}: ${pctB}%
+
+${winner}
+
+🔮 Cek prediksi tim favoritmu di:
+https://skorduel.pages.dev`;
+
+      if (platform === 'wa') {
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      } else if (platform === 'tw') {
+        const twText = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nCek di skorduel.pages.dev`;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twText)}`, '_blank');
+      } else if (platform === 'copy') {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('✅ Hasil prediksi berhasil di-copy!');
+        }).catch(() => {
+          alert('❌ Gagal copy, coba lagi ya bre');
+        });
+      }
+    }
   </script>
 </body>
 </html>
