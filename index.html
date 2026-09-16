@@ -19,8 +19,11 @@
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at 20% 20%, #1a1a2e 0%, #0a0a0f 60%);
-      background-attachment: fixed;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.18), transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(168, 132, 42, 0.12), transparent 50%),
+        linear-gradient(rgba(10, 10, 15, 0.88), rgba(10, 10, 15, 0.96)),
+        url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1920&q=80') center/cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -35,15 +38,16 @@
     .container {
       width: 100%;
       max-width: 480px;
-      background: linear-gradient(145deg, rgba(30, 30, 45, 0.9), rgba(15, 15, 25, 0.9));
+      background: linear-gradient(145deg, rgba(25, 25, 38, 0.85), rgba(12, 12, 20, 0.92));
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
       border-radius: 20px;
       padding: 36px 30px;
       box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 24px 80px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(212, 175, 55, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
       position: relative;
     }
 
@@ -53,7 +57,7 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
+      width: 100px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
       border-radius: 2px;
@@ -67,7 +71,7 @@
     .logo .crown {
       font-size: 38px;
       margin-bottom: 6px;
-      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.5));
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.6));
     }
 
     .logo h1 {
@@ -83,7 +87,7 @@
 
     .logo p {
       font-size: 11px;
-      color: #71717a;
+      color: #a1a1aa;
       margin-top: 8px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -102,8 +106,8 @@
     select {
       width: 100%;
       padding: 14px 16px;
-      background: rgba(10, 10, 15, 0.7);
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      background: rgba(10, 10, 15, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 10px;
       color: #f5f5f5;
       font-size: 14px;
@@ -120,8 +124,8 @@
 
     select:focus {
       border-color: #d4af37;
-      background-color: rgba(212, 175, 55, 0.05);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      background-color: rgba(212, 175, 55, 0.08);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
     }
 
     select option {
@@ -146,6 +150,7 @@
       color: #d4af37;
       padding: 0 4px;
       letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
 
     #btnPrediksi {
@@ -162,12 +167,13 @@
       margin-top: 8px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
     }
 
     #btnPrediksi:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 12px 36px rgba(212, 175, 55, 0.5);
+      filter: brightness(1.05);
     }
 
     #btnPrediksi:active {
@@ -177,9 +183,9 @@
     .result {
       margin-top: 24px;
       padding: 22px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 14px;
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
       display: none;
     }
 
@@ -222,7 +228,7 @@
 
     .bar-track {
       height: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 10px;
       overflow: hidden;
     }
@@ -234,15 +240,15 @@
       width: 0;
     }
 
-    .bar-a { background: linear-gradient(90deg, #d4af37, #f5e6a8); }
+    .bar-a { background: linear-gradient(90deg, #d4af37, #f5e6a8); box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); }
     .bar-draw { background: linear-gradient(90deg, #52525b, #a1a1aa); }
-    .bar-b { background: linear-gradient(90deg, #a8842a, #d4af37); }
+    .bar-b { background: linear-gradient(90deg, #a8842a, #d4af37); box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); }
 
     .winner {
       text-align: center;
       margin-top: 20px;
       padding-top: 18px;
-      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
       font-size: 13px;
       color: #a1a1aa;
       letter-spacing: 0.5px;
@@ -252,6 +258,7 @@
       color: #d4af37;
       font-size: 15px;
       font-weight: 700;
+      text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
     }
 
     .share-row {
@@ -290,7 +297,7 @@
     .watermark {
       text-align: center;
       font-size: 10px;
-      color: #3f3f46;
+      color: #52525b;
       margin-top: 22px;
       letter-spacing: 1px;
     }
@@ -424,7 +431,6 @@
 
     let lastResult = {};
 
-    // Isi dropdown tim saat liga dipilih
     ligaSelect.addEventListener('change', () => {
       const liga = ligaSelect.value;
       timASelect.innerHTML = '<option value="">Tim A</option>';
@@ -440,7 +446,6 @@
       resultDiv.classList.remove('show');
     });
 
-    // Tombol prediksi
     btnPrediksi.addEventListener('click', () => {
       const timA = timASelect.value;
       const timB = timBSelect.value;
@@ -492,14 +497,12 @@
 
       document.getElementById('winner').innerHTML = winnerText;
 
-      // Simpan untuk fitur share
       lastResult = {
         timA, timB, pctA, pctB, pctDraw,
         winner: winnerText.replace(/<[^>]*>/g, '')
       };
     });
 
-    // 📤 Fungsi share hasil prediksi
     function shareTo(platform) {
       if (!lastResult.timA) {
         alert('Prediksi dulu bre sebelum share!');
