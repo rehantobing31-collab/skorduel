@@ -80,23 +80,14 @@
     }
     @keyframes borderFlow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
     .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 8px; }
-    .header-top button {
-      background: transparent; border: 1px solid var(--border-color);
-      color: var(--accent-1); font-size: 11px; padding: 6px 12px; border-radius: 8px;
-      cursor: pointer; font-weight: 700; letter-spacing: 0.5px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .header-top button { background: transparent; border: 1px solid var(--border-color); color: var(--accent-1); font-size: 11px; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; letter-spacing: 0.5px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
     .header-top button:hover { background: rgba(0, 255, 136, 0.1); border-color: var(--accent-1); box-shadow: 0 0 16px rgba(0, 255, 136, 0.4); transform: translateY(-1px); }
-    .header-top button:active { transform: translateY(0) scale(0.97); }
     .theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--accent-1); font-size: 16px; padding: 4px 10px; border-radius: 8px; cursor: pointer; transition: all 0.25s; line-height: 1; }
     .theme-toggle:hover { background: rgba(0, 255, 136, 0.1); box-shadow: 0 0 16px rgba(0, 255, 136, 0.4); transform: rotate(180deg) scale(1.1); }
     .logo { text-align: center; margin-bottom: 22px; }
     .logo-img { width: 160px; height: auto; max-width: 85%; margin-bottom: 12px; filter: drop-shadow(0 6px 24px rgba(0, 255, 136, 0.5)); animation: logoGlow 3s ease-in-out infinite; object-fit: contain; transition: transform 0.3s ease; }
     .logo-img:hover { transform: scale(1.05) rotate(-2deg); }
-    @keyframes logoGlow {
-      0%, 100% { filter: drop-shadow(0 6px 24px rgba(0, 255, 136, 0.5)); }
-      50% { filter: drop-shadow(0 8px 40px rgba(255, 0, 68, 0.7)); }
-    }
+    @keyframes logoGlow { 0%, 100% { filter: drop-shadow(0 6px 24px rgba(0, 255, 136, 0.5)); } 50% { filter: drop-shadow(0 8px 40px rgba(255, 0, 68, 0.7)); } }
     .logo h1 { font-size: 32px; font-weight: 900; letter-spacing: 1.5px; background: linear-gradient(90deg, #ff0044, #ffaa00, #00ff88, #00aaff, #aa00ff); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: rainbowShift 4s linear infinite; text-transform: uppercase; }
     @keyframes rainbowShift { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
     .logo p { font-size: 10px; color: var(--text-muted); margin-top: 6px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
@@ -142,11 +133,7 @@
     .form-team-name { font-size: 10px; color: var(--text-secondary); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
     .form-badges { display: flex; gap: 3px; }
     .form-badge { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 900; color: #fff; animation: badgePop 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; }
-    .form-badge:nth-child(1) { animation-delay: 0.05s; }
-    .form-badge:nth-child(2) { animation-delay: 0.10s; }
-    .form-badge:nth-child(3) { animation-delay: 0.15s; }
-    .form-badge:nth-child(4) { animation-delay: 0.20s; }
-    .form-badge:nth-child(5) { animation-delay: 0.25s; }
+    .form-badge:nth-child(1) { animation-delay: 0.05s; } .form-badge:nth-child(2) { animation-delay: 0.10s; } .form-badge:nth-child(3) { animation-delay: 0.15s; } .form-badge:nth-child(4) { animation-delay: 0.20s; } .form-badge:nth-child(5) { animation-delay: 0.25s; }
     @keyframes badgePop { from { opacity: 0; transform: scale(0.5) rotate(-30deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
     .form-badge.w { background: #00c853; box-shadow: 0 0 8px rgba(0, 200, 83, 0.5); }
     .form-badge.d { background: #ffaa00; box-shadow: 0 0 8px rgba(255, 170, 0, 0.5); }
@@ -168,11 +155,7 @@
     .top-scorers-title { font-size: 10px; color: var(--accent-1); text-transform: uppercase; letter-spacing: 1.8px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
     .top-scorers-list { display: flex; flex-direction: column; gap: 6px; }
     .scorer-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--item-bg); border-radius: 8px; border: 1px solid var(--item-border); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; }
-    .scorer-row:nth-child(1) { animation-delay: 0.05s; }
-    .scorer-row:nth-child(2) { animation-delay: 0.10s; }
-    .scorer-row:nth-child(3) { animation-delay: 0.15s; }
-    .scorer-row:nth-child(4) { animation-delay: 0.20s; }
-    .scorer-row:nth-child(5) { animation-delay: 0.25s; }
+    .scorer-row:nth-child(1) { animation-delay: 0.05s; } .scorer-row:nth-child(2) { animation-delay: 0.10s; } .scorer-row:nth-child(3) { animation-delay: 0.15s; } .scorer-row:nth-child(4) { animation-delay: 0.20s; } .scorer-row:nth-child(5) { animation-delay: 0.25s; }
     @keyframes slideInRight { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
     .scorer-row:hover { background: rgba(0, 255, 136, 0.05); border-color: rgba(0, 255, 136, 0.3); transform: translateX(4px) scale(1.01); }
     .scorer-rank { font-size: 11px; font-weight: 900; color: var(--text-muted); width: 18px; text-align: center; }
@@ -232,7 +215,6 @@
     .bar-b { background: linear-gradient(90deg, #aa00ff, var(--accent-2)); box-shadow: 0 0 12px rgba(170, 0, 255, 0.5); }
     .share-main-btn { width: 100%; padding: 14px; margin-top: 14px; background: linear-gradient(135deg, #ff0044 0%, #aa00ff 100%); border: none; border-radius: 10px; color: #ffffff; font-size: 13px; font-weight: 900; cursor: pointer; letter-spacing: 1px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 24px rgba(255, 0, 68, 0.35); text-transform: uppercase; }
     .share-main-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(255, 0, 68, 0.55); filter: brightness(1.1); }
-    .share-main-btn:active { transform: scale(0.97); }
     .share-modal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
     .share-modal-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 8px; background: var(--item-bg); border: 1.5px solid var(--border-color); border-radius: 12px; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-size: 11px; font-weight: 700; color: var(--text-primary); text-align: center; }
     .share-modal-item:hover { transform: translateY(-3px) scale(1.03); border-color: var(--accent-1); background: rgba(0, 255, 136, 0.08); box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3); }
@@ -264,19 +246,14 @@
     .history-item .hi-winner { color: var(--accent-1); font-weight: 800; font-size: 10px; text-shadow: 0 0 6px rgba(0, 255, 136, 0.4); }
     .history-item .hi-time { color: var(--text-muted); font-size: 9px; }
     .history-empty { text-align: center; font-size: 11px; color: var(--text-muted); padding: 10px; }
-    /* LEADERBOARD & TRENDING */
     .lb-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-color); }
     .lb-tabs { display: flex; gap: 6px; margin-bottom: 12px; background: rgba(0, 0, 0, 0.3); padding: 3px; border-radius: 10px; border: 1px solid var(--border-color); }
     body.light-mode .lb-tabs { background: rgba(0, 0, 0, 0.05); }
     .lb-tabs button { flex: 1; padding: 7px 6px; background: transparent; border: none; color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: pointer; border-radius: 7px; transition: all 0.25s ease; letter-spacing: 0.5px; text-transform: uppercase; }
     .lb-tabs button.active { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); color: #0a0a0f; box-shadow: 0 2px 12px rgba(0, 255, 136, 0.4); }
     .lb-content { min-height: 60px; }
-    .lb-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--item-bg); border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--item-border); animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; }
-    .lb-row:nth-child(1) { animation-delay: 0.05s; }
-    .lb-row:nth-child(2) { animation-delay: 0.10s; }
-    .lb-row:nth-child(3) { animation-delay: 0.15s; }
-    .lb-row:nth-child(4) { animation-delay: 0.20s; }
-    .lb-row:nth-child(5) { animation-delay: 0.25s; }
+    .lb-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--item-bg); border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--item-border); animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; position: relative; }
+    .lb-row:nth-child(1) { animation-delay: 0.05s; } .lb-row:nth-child(2) { animation-delay: 0.10s; } .lb-row:nth-child(3) { animation-delay: 0.15s; } .lb-row:nth-child(4) { animation-delay: 0.20s; } .lb-row:nth-child(5) { animation-delay: 0.25s; }
     .lb-rank { font-size: 13px; font-weight: 900; width: 24px; text-align: center; color: var(--text-muted); }
     .lb-rank.top-1 { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
     .lb-rank.top-2 { color: #c0c0c0; text-shadow: 0 0 10px rgba(192, 192, 192, 0.5); }
@@ -286,6 +263,19 @@
     .lb-sub { font-size: 9px; color: var(--text-muted); }
     .lb-count { font-size: 14px; font-weight: 900; color: var(--accent-1); text-shadow: 0 0 8px rgba(0, 255, 136, 0.4); }
     .lb-empty { text-align: center; font-size: 11px; color: var(--text-muted); padding: 16px; }
+    .lb-row.is-me { border-color: #ffd700 !important; background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 170, 0, 0.08)) !important; box-shadow: 0 0 16px rgba(255, 215, 0, 0.3); }
+    .lb-row.is-me::before { content: '👑'; position: absolute; top: -8px; right: -4px; font-size: 16px; animation: crownBounce 1.5s ease-in-out infinite; }
+    .lb-row.is-me .lb-name { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+    .lb-row.is-me .lb-count { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+    .player-badge { display: inline-block; padding: 2px 8px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); color: #0a0a0f; font-size: 9px; font-weight: 900; border-radius: 6px; letter-spacing: 0.5px; margin-left: 4px; }
+    .stats-bar { display: flex; justify-content: space-around; margin-top: 16px; padding: 12px; background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid var(--border-color); animation: slideInUp 0.5s ease; }
+    body.light-mode .stats-bar { background: rgba(0, 0, 0, 0.03); }
+    .stats-bar-item { text-align: center; flex: 1; }
+    .stats-bar-value { font-size: 18px; font-weight: 900; color: var(--accent-1); text-shadow: 0 0 12px rgba(0, 255, 136, 0.5); letter-spacing: -0.5px; }
+    .stats-bar-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; font-weight: 700; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); color: #0a0a0f; padding: 12px 24px; border-radius: 12px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; box-shadow: 0 8px 32px rgba(0, 255, 136, 0.5); z-index: 1000; opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast.error { background: linear-gradient(135deg, #ff0044, #aa00ff); color: #ffffff; box-shadow: 0 8px 32px rgba(255, 0, 68, 0.5); }
     .watermark { text-align: center; font-size: 10px; color: var(--text-muted); margin-top: 18px; letter-spacing: 1.5px; font-weight: 600; }
     .install-banner { display: none; margin-top: 12px; padding: 12px; background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 170, 255, 0.1)); border: 1.5px solid var(--accent-1); border-radius: 12px; text-align: center; }
     .install-banner.show { display: block; animation: slideInUp 0.5s ease; }
@@ -303,6 +293,21 @@
     .modal-content li { list-style: disc; }
     .modal-close { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); border: none; border-radius: 10px; color: #0a0a0f; font-weight: 900; font-size: 13px; cursor: pointer; margin-top: 16px; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.25s ease; }
     .modal-close:hover { filter: brightness(1.1); box-shadow: 0 0 24px rgba(0, 255, 136, 0.5); transform: scale(1.02); }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .compare-grid select { margin-bottom: 0; font-size: 12px; padding: 12px 14px; }
+    .compare-result { margin-top: 16px; padding: 16px; background: rgba(0, 0, 0, 0.5); border-radius: 14px; border: 1px solid var(--border-color); display: none; }
+    body.light-mode .compare-result { background: rgba(0, 0, 0, 0.03); }
+    .compare-result.show { display: block; animation: resultIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .compare-result h3 { font-size: 12px; color: var(--accent-1); text-align: center; margin-bottom: 14px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; }
+    .compare-team-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--item-bg); border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--item-border); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); animation: slideInRight 0.4s ease backwards; }
+    .compare-team-row:nth-child(1) { animation-delay: 0.1s; } .compare-team-row:nth-child(2) { animation-delay: 0.2s; } .compare-team-row:nth-child(3) { animation-delay: 0.3s; } .compare-team-row:nth-child(4) { animation-delay: 0.4s; }
+    .compare-team-row:hover { transform: translateX(4px); }
+    .compare-team-row.winner-row { border-color: var(--accent-1); background: rgba(0, 255, 136, 0.08); box-shadow: 0 0 16px rgba(0, 255, 136, 0.2); }
+    .compare-logo { width: 36px; height: 36px; border-radius: 50%; background: var(--input-bg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: var(--accent-1); overflow: hidden; flex-shrink: 0; }
+    .compare-logo img { width: 85%; height: 85%; object-fit: contain; }
+    .compare-info { flex: 1; min-width: 0; }
+    .compare-name { font-size: 12px; color: var(--text-primary); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .compare-pct { font-size: 16px; color: var(--accent-1); font-weight: 900; text-shadow: 0 0 8px rgba(0, 255, 136, 0.4); }
   </style>
 </head>
 <body>
@@ -510,8 +515,25 @@
       </div>
     </div>
 
+    <div class="stats-bar" id="statsBar" style="display:none;">
+      <div class="stats-bar-item">
+        <div class="stats-bar-value" id="statTotalPred">0</div>
+        <div class="stats-bar-label">Total Prediksi</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-value" id="statTotalUsers">0</div>
+        <div class="stats-bar-label">Total User</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-value" id="statToday">0</div>
+        <div class="stats-bar-label">Hari Ini</div>
+      </div>
+    </div>
+
     <div class="watermark">© 2026 SKORDUEL — ALL RIGHTS RESERVED</div>
   </div>
+
+  <div class="toast" id="toast">✅ Tersimpan!</div>
 
   <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
     <div class="modal-content" id="modalContent"></div>
@@ -528,18 +550,28 @@
 
     const API_URL = 'https://skorduel-api.rehantobing31.workers.dev';
 
-    // 🆔 DEVICE ID
     function getDeviceId() {
       let id = localStorage.getItem('skorduel_device_id');
-      if (!id) {
-        id = 'dev_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-        localStorage.setItem('skorduel_device_id', id);
-      }
+      if (!id) { id = 'dev_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36); localStorage.setItem('skorduel_device_id', id); }
       return id;
     }
     const DEVICE_ID = getDeviceId();
+    function shortHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = ''; let h = Math.abs(hash);
+      for (let i = 0; i < 4; i++) { code += chars[h % chars.length]; h = Math.floor(h / chars.length); }
+      return code;
+    }
+    const PLAYER_CODE = shortHash(DEVICE_ID);
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.toggle('error', isError);
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
 
-    // 🎊 CONFETTI
     function launchConfetti() {
       const container = document.getElementById('confettiContainer');
       const colors = ['#00ff88', '#00aaff', '#ff0044', '#ffaa00', '#aa00ff', '#ffffff'];
@@ -558,14 +590,9 @@
       }
     }
 
-    // 🌙 THEME
     function loadTheme() {
       const saved = localStorage.getItem('skorduel_theme') || 'dark';
-      if (saved === 'light') {
-        document.body.classList.add('light-mode');
-        const btn = document.getElementById('themeToggle');
-        if (btn) btn.textContent = '☀️';
-      }
+      if (saved === 'light') { document.body.classList.add('light-mode'); const btn = document.getElementById('themeToggle'); if (btn) btn.textContent = '☀️'; }
     }
     function toggleTheme() {
       const isLight = document.body.classList.toggle('light-mode');
@@ -620,21 +647,16 @@
       if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
       return (words[0][0] + words[words.length - 1][0]).toUpperCase();
     }
-
     function generateForm() {
       const weights = [0.45, 0.25, 0.30];
       const form = [];
       for (let i = 0; i < 5; i++) {
         const r = Math.random();
-        if (r < weights[0]) form.push('W');
-        else if (r < weights[0] + weights[1]) form.push('D');
-        else form.push('L');
+        if (r < weights[0]) form.push('W'); else if (r < weights[0] + weights[1]) form.push('D'); else form.push('L');
       }
       return form;
     }
-    function renderForm(formArr) {
-      return formArr.map(f => `<div class="form-badge ${f.toLowerCase()}">${f}</div>`).join('');
-    }
+    function renderForm(formArr) { return formArr.map(f => `<div class="form-badge ${f.toLowerCase()}">${f}</div>`).join(''); }
 
     function updateLogos() {
       const timA = timASelect.value, timB = timBSelect.value, liga = ligaSelect.value;
@@ -764,15 +786,12 @@
       const timer = setInterval(() => { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = Math.round(current) + suffix; }, 25);
     }
 
-    // 📤 POST HISTORY ke server
     async function postHistory(data) {
       try {
-        await fetch(`${API_URL}/history`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ device_id: DEVICE_ID, ...data })
-        });
-      } catch (e) { /* silent */ }
+        const res = await fetch(`${API_URL}/history`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ device_id: DEVICE_ID, ...data }) });
+        if (res.ok) { showToast('✅ Prediksi tersimpan di server!'); loadStats(); }
+        else { showToast('⚠️ Gagal simpan ke server', true); }
+      } catch (e) { showToast('⚠️ Server offline, tersimpan lokal', true); }
     }
 
     btnPrediksi.addEventListener('click', () => {
@@ -828,9 +847,7 @@
       lastResult = { timA, timB, pctA, pctB, pctDraw, golA, golB, winner: winnerText };
       const histItem = { match: `${timA} vs ${timB}`, winner: `${golA}-${golB}` };
       saveHistory(histItem);
-      // POST ke server
       postHistory({ tim_a: timA, tim_b: timB, liga, gol_a: golA, gol_b: golB, pct_a: pctA, pct_b: pctB, pct_draw: pctDraw, winner: `${golA}-${golB}` });
-      // Refresh leaderboard + trending
       loadLeaderboard();
       loadTrending();
     });
@@ -876,7 +893,6 @@
       else { document.getElementById('modeDuel').style.display = 'none'; document.getElementById('modeCompare').style.display = 'block'; document.getElementById('tabDuel').classList.remove('active'); document.getElementById('tabCompare').classList.add('active'); }
     }
 
-    // 📜 HISTORY LOCAL
     function timeAgo(ts) {
       const diff = Date.now() - ts;
       const m = Math.floor(diff / 60000);
@@ -903,68 +919,73 @@
     }
     function clearHistory() { localStorage.removeItem('skorduel_history'); renderHistory([]); }
 
-    // 🏆 LEADERBOARD & 🔥 TRENDING
     let currentLbTab = 'leaderboard';
+    let lbRefreshInterval = null;
+
     async function loadLeaderboard() {
       const el = document.getElementById('lbContent');
       try {
         const res = await fetch(`${API_URL}/leaderboard`);
         const data = await res.json();
-        if (!data.leaderboard || !data.leaderboard.length) {
-          el.innerHTML = '<div class="lb-empty">Belum ada data leaderboard</div>';
-          return;
-        }
+        if (!data.leaderboard || !data.leaderboard.length) { el.innerHTML = '<div class="lb-empty">Belum ada data leaderboard</div>'; return; }
         el.innerHTML = data.leaderboard.map((u, i) => {
           const rankClass = i === 0 ? 'top-1' : i === 1 ? 'top-2' : i === 2 ? 'top-3' : '';
           const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
-          const shortId = u.device_id.substring(0, 10);
-          return `<div class="lb-row"><div class="lb-rank ${rankClass}">${medal}</div><div class="lb-info"><div class="lb-name">Player #${shortId}</div><div class="lb-sub">Device ID</div></div><div class="lb-count">${u.total}×</div></div>`;
+          const code = shortHash(u.device_id);
+          const isMe = u.device_id === DEVICE_ID ? 'is-me' : '';
+          const meLabel = u.device_id === DEVICE_ID ? '<span class="player-badge">ANDA</span>' : '';
+          return `<div class="lb-row ${isMe}"><div class="lb-rank ${rankClass}">${medal}</div><div class="lb-info"><div class="lb-name">Player #${code}${meLabel}</div><div class="lb-sub">SkorDuel Member</div></div><div class="lb-count">${u.total}×</div></div>`;
         }).join('');
       } catch (e) { el.innerHTML = '<div class="lb-empty">Gagal load leaderboard</div>'; }
     }
+
     async function loadTrending() {
       const el = document.getElementById('lbContent');
       try {
         const res = await fetch(`${API_URL}/trending`);
         const data = await res.json();
-        if (!data.trending || !data.trending.length) {
-          el.innerHTML = '<div class="lb-empty">Belum ada prediksi trending</div>';
-          return;
-        }
+        if (!data.trending || !data.trending.length) { el.innerHTML = '<div class="lb-empty">Belum ada prediksi trending</div>'; return; }
         el.innerHTML = data.trending.map((t, i) => {
           const shortLiga = t.liga.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
           return `<div class="lb-row"><div class="lb-rank">${i + 1}</div><div class="lb-info"><div class="lb-name">${t.tim_a} vs ${t.tim_b}</div><div class="lb-sub">${shortLiga}</div></div><div class="lb-count">${t.total}×</div></div>`;
         }).join('');
       } catch (e) { el.innerHTML = '<div class="lb-empty">Gagal load trending</div>'; }
     }
+
+    async function loadStats() {
+      try {
+        const res = await fetch(`${API_URL}/stats`);
+        const data = await res.json();
+        if (data.totalPredictions != null) {
+          document.getElementById('statTotalPred').textContent = data.totalPredictions;
+          document.getElementById('statTotalUsers').textContent = data.totalUsers;
+          document.getElementById('statToday').textContent = data.todayPredictions;
+          document.getElementById('statsBar').style.display = 'flex';
+        }
+      } catch (e) {}
+    }
+
     function switchLbTab(tab) {
       currentLbTab = tab;
       document.getElementById('lbTabLeaderboard').classList.toggle('active', tab === 'leaderboard');
       document.getElementById('lbTabTrending').classList.toggle('active', tab === 'trending');
-      if (tab === 'leaderboard') loadLeaderboard(); else loadTrending();
+      if (lbRefreshInterval) { clearInterval(lbRefreshInterval); lbRefreshInterval = null; }
+      if (tab === 'leaderboard') {
+        loadLeaderboard();
+        lbRefreshInterval = setInterval(() => { if (currentLbTab === 'leaderboard') loadLeaderboard(); }, 30000);
+      } else {
+        loadTrending();
+        lbRefreshInterval = setInterval(() => { if (currentLbTab === 'trending') loadTrending(); }, 60000);
+      }
     }
 
-    // 📤 SHARE
     function openShareModal() {
       if (!lastResult.timA) { alert('Prediksi dulu bre sebelum share!'); return; }
       const { timA, timB, golA, golB, pctA, pctB, pctDraw, winner } = lastResult;
       const shareText = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🎯 *Prediksi Skor: ${golA} - ${golB}*\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek di:\nhttps://skorduel.pages.dev`;
       const shareTextShort = `⚽ ${timA} vs ${timB}\n🎯 Prediksi: ${golA}-${golB}\n\nskorduel.pages.dev`;
       const pageUrl = 'https://skorduel.pages.dev';
-      const modalHtml = `
-        <h2>📤 Bagikan Prediksi</h2>
-        <p style="text-align:center;margin-bottom:16px;font-size:12px;color:var(--text-secondary);">${timA} <strong style="color:var(--accent-1);">${golA} - ${golB}</strong> ${timB}</p>
-        <div class="share-modal-grid">
-          <a class="share-modal-item wa" onclick="doShare('wa')"><span class="icon">📱</span>WhatsApp</a>
-          <a class="share-modal-item tg" onclick="doShare('tg')"><span class="icon">✈️</span>Telegram</a>
-          <a class="share-modal-item tw" onclick="doShare('tw')"><span class="icon">🐦</span>Twitter / X</a>
-          <a class="share-modal-item fb" onclick="doShare('fb')"><span class="icon">📘</span>Facebook</a>
-          <a class="share-modal-item copy" onclick="doShare('copy')"><span class="icon">🔗</span>Copy Teks</a>
-          <a class="share-modal-item link" onclick="doShare('link')"><span class="icon">📋</span>Copy Link</a>
-          <a class="share-modal-item native" onclick="doShare('native')" id="nativeShareBtn" style="grid-column: 1 / -1;"><span class="icon">📲</span>Bagikan via Aplikasi Lain</a>
-        </div>
-        <button class="modal-close" onclick="closeModal()" style="margin-top:16px;">Tutup</button>
-      `;
+      const modalHtml = `<h2>📤 Bagikan Prediksi</h2><p style="text-align:center;margin-bottom:16px;font-size:12px;color:var(--text-secondary);">${timA} <strong style="color:var(--accent-1);">${golA} - ${golB}</strong> ${timB}</p><div class="share-modal-grid"><a class="share-modal-item wa" onclick="doShare('wa')"><span class="icon">📱</span>WhatsApp</a><a class="share-modal-item tg" onclick="doShare('tg')"><span class="icon">✈️</span>Telegram</a><a class="share-modal-item tw" onclick="doShare('tw')"><span class="icon">🐦</span>Twitter / X</a><a class="share-modal-item fb" onclick="doShare('fb')"><span class="icon">📘</span>Facebook</a><a class="share-modal-item copy" onclick="doShare('copy')"><span class="icon">🔗</span>Copy Teks</a><a class="share-modal-item link" onclick="doShare('link')"><span class="icon">📋</span>Copy Link</a><a class="share-modal-item native" onclick="doShare('native')" id="nativeShareBtn" style="grid-column: 1 / -1;"><span class="icon">📲</span>Bagikan via Aplikasi Lain</a></div><button class="modal-close" onclick="closeModal()" style="margin-top:16px;">Tutup</button>`;
       document.getElementById('modalContent').innerHTML = modalHtml;
       document.getElementById('modalOverlay').classList.add('show');
       if (!navigator.share) { const nb = document.getElementById('nativeShareBtn'); if (nb) nb.style.display = 'none'; }
@@ -983,32 +1004,20 @@
     }
 
     const modalData = {
-      howto: `<h2>❓ Cara Kerja</h2>
-        <p>SkorDuel pakai model statistik sederhana berbasis performa tim.</p>
-        <h3>📊 Sumber Data</h3>
-        <ul><li><strong>Liga top Eropa</strong>: live dari Football-Data.org</li><li><strong>Liga lainnya</strong>: data manual</li></ul>
-        <h3>🧮 Rumus</h3>
-        <ul><li>Skor kekuatan = (poin/pertandingan ÷ poin maks) × 45 + 50</li><li>Peluang menang = (skor tim ÷ total) × 85%</li><li>Draw = 15%</li><li>Selisih < 5% → draw</li></ul>
-        <h3>🎯 Confidence</h3>
-        <ul><li>HIGH: selisih ≥ 15%</li><li>MEDIUM: 8-14%</li><li>LOW: < 8%</li></ul>
-        <h3>💾 Data</h3>
-        <p>History prediksi disimpan di Cloudflare D1 (server) + localStorage (lokal).</p>
-        <h3>⚠️ Disclaimer</h3>
-        <p>Prediksi hanya estimasi statistik, bukan jaminan hasil.</p>
-        <button class="modal-close" onclick="closeModal()">Mengerti</button>`
+      howto: `<h2>❓ Cara Kerja</h2><p>SkorDuel pakai model statistik sederhana berbasis performa tim.</p><h3>📊 Sumber Data</h3><ul><li><strong>Liga top Eropa</strong>: live dari Football-Data.org</li><li><strong>Liga lainnya</strong>: data manual</li></ul><h3>🧮 Rumus</h3><ul><li>Skor kekuatan = (poin/pertandingan ÷ poin maks) × 45 + 50</li><li>Peluang menang = (skor tim ÷ total) × 85%</li><li>Draw = 15%</li><li>Selisih < 5% → draw</li></ul><h3>🎯 Confidence</h3><ul><li>HIGH: selisih ≥ 15%</li><li>MEDIUM: 8-14%</li><li>LOW: < 8%</li></ul><h3>💾 Data</h3><p>History prediksi disimpan di Cloudflare D1 (server) + localStorage (lokal).</p><h3>⚠️ Disclaimer</h3><p>Prediksi hanya estimasi statistik, bukan jaminan hasil.</p><button class="modal-close" onclick="closeModal()">Mengerti</button>`
     };
     function openModal(type) { document.getElementById('modalContent').innerHTML = modalData[type] || ''; document.getElementById('modalOverlay').classList.add('show'); }
     function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); }
 
-    // 📱 PWA
     let deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('installBanner').classList.add('show'); });
     function installPWA() { if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('installBanner').classList.remove('show'); }); }
     if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => {}); }); }
 
-    // INIT
     loadHistory();
     loadLeaderboard();
+    loadStats();
+    setInterval(loadStats, 60000);
   </script>
 </body>
 </html>
