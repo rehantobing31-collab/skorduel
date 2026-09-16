@@ -174,8 +174,8 @@
     }
 
     .logo-circle {
-      width: 68px;
-      height: 68px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: linear-gradient(145deg, #2a2a3e, #15151f);
       border: 2px solid rgba(212, 175, 55, 0.4);
@@ -186,21 +186,15 @@
       font-weight: 800;
       color: #d4af37;
       letter-spacing: 1px;
-      text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
       overflow: hidden;
       position: relative;
       transition: all 0.3s ease;
     }
 
     .logo-circle img {
-      width: 100%;
-      height: 100%;
+      width: 85%;
+      height: 85%;
       object-fit: contain;
-      padding: 8px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: rgba(10, 10, 15, 0.8);
     }
 
     .logo-circle:hover {
@@ -361,6 +355,27 @@
     .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
     .share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
 
+    .loading {
+      text-align: center;
+      font-size: 12px;
+      color: #71717a;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .loading.show { display: block; }
+
+    .api-badge {
+      text-align: center;
+      font-size: 10px;
+      color: #52525b;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .api-badge.live { color: #22c55e; }
+    .api-badge.manual { color: #f59e0b; }
+
     .watermark {
       text-align: center;
       font-size: 10px;
@@ -381,11 +396,11 @@
     <label for="liga">Pilih Liga</label>
     <select id="liga">
       <option value="">-- Pilih Liga --</option>
-      <option value="premier-league">Premier League (Inggris)</option>
-      <option value="la-liga">La Liga (Spanyol)</option>
-      <option value="serie-a">Serie A (Italia)</option>
-      <option value="bundesliga">Bundesliga (Jerman)</option>
-      <option value="ligue-1">Ligue 1 (Prancis)</option>
+      <option value="premier-league">Premier League (Inggris) ⚡</option>
+      <option value="la-liga">La Liga (Spanyol) ⚡</option>
+      <option value="serie-a">Serie A (Italia) ⚡</option>
+      <option value="bundesliga">Bundesliga (Jerman) ⚡</option>
+      <option value="ligue-1">Ligue 1 (Prancis) ⚡</option>
       <option value="saudi-pro-league">Saudi Pro League</option>
       <option value="j1-league">J1 League (Jepang)</option>
       <option value="mls">MLS (Amerika Serikat)</option>
@@ -414,6 +429,9 @@
         <span class="logo-name" id="logoNameB">Tim B</span>
       </div>
     </div>
+
+    <div class="loading" id="loading">⏳ Mengambil data dari Football-Data.org...</div>
+    <div class="api-badge" id="apiBadge"></div>
 
     <button id="btnPrediksi">🔮 Prediksi Sekarang</button>
 
@@ -462,43 +480,11 @@
 
     console.log = console.warn = console.error = () => {};
 
-    // 📊 DATA TIM & SKOR KEKUATAN
-    const teamsData = {
-      'premier-league': {
-        "Manchester City": 92, "Arsenal": 89, "Liverpool": 88, "Chelsea": 82,
-        "Aston Villa": 80, "Tottenham": 78, "Manchester United": 77, "Newcastle": 76,
-        "Brighton": 75, "West Ham": 74, "Crystal Palace": 73, "Brentford": 72,
-        "Fulham": 72, "Bournemouth": 71, "Wolves": 70, "Everton": 69,
-        "Nottingham Forest": 69, "Leicester City": 68, "Ipswich Town": 66, "Southampton": 65
-      },
-      'la-liga': {
-        "Real Madrid": 92, "Barcelona": 88, "Atletico Madrid": 85, "Athletic Bilbao": 79,
-        "Real Sociedad": 77, "Villarreal": 76, "Real Betis": 75, "Valencia": 74,
-        "Sevilla": 74, "Girona": 73, "Osasuna": 72, "Celta Vigo": 71,
-        "Rayo Vallecano": 70, "Mallorca": 70, "Getafe": 69, "Alaves": 68,
-        "Las Palmas": 67, "Espanyol": 66, "Leganes": 65, "Valladolid": 64
-      },
-      'serie-a': {
-        "Inter Milan": 90, "AC Milan": 86, "Juventus": 85, "Napoli": 84,
-        "Atalanta": 82, "Roma": 80, "Lazio": 79, "Fiorentina": 77,
-        "Bologna": 76, "Torino": 74, "Udinese": 73, "Genoa": 72,
-        "Monza": 71, "Lecce": 70, "Cagliari": 69, "Verona": 68,
-        "Empoli": 68, "Parma": 67, "Como": 66, "Venezia": 65
-      },
-      'bundesliga': {
-        "Bayern Munich": 92, "Bayer Leverkusen": 89, "Borussia Dortmund": 84, "RB Leipzig": 83,
-        "Stuttgart": 78, "Eintracht Frankfurt": 77, "Hoffenheim": 74, "Freiburg": 73,
-        "Union Berlin": 72, "Werder Bremen": 71, "Wolfsburg": 71, "Mainz": 70,
-        "Augsburg": 69, "Borussia Monchengladbach": 69, "Heidenheim": 67, "St. Pauli": 66,
-        "Holstein Kiel": 65, "Bochum": 64
-      },
-      'ligue-1': {
-        "PSG": 92, "Monaco": 82, "Marseille": 80, "Lille": 78,
-        "Lyon": 77, "Nice": 75, "Lens": 74, "Rennes": 73,
-        "Strasbourg": 71, "Toulouse": 70, "Reims": 69, "Nantes": 68,
-        "Brest": 68, "Montpellier": 67, "Auxerre": 66, "Angers": 65,
-        "Le Havre": 64, "Saint-Etienne": 63
-      },
+    // 🌐 URL Worker API
+    const API_URL = 'https://skorduel-api.rehantobing31.workers.dev';
+
+    // 📊 Data fallback (liga yang gak ada di Football-Data.org)
+    const teamsDataFallback = {
       'saudi-pro-league': {
         "Al Hilal": 88, "Al Nassr": 86, "Al Ittihad": 84, "Al Ahli": 82,
         "Al Qadsiah": 78, "Neom SC": 76, "Al Shabab": 74, "Al Ettifaq": 73,
@@ -532,39 +518,49 @@
       }
     };
 
+    // Liga yang pakai API Football-Data.org
+    const API_LIGA = ['premier-league', 'la-liga', 'serie-a', 'bundesliga', 'ligue-1'];
+
     const ligaSelect = document.getElementById('liga');
     const timASelect = document.getElementById('timA');
     const timBSelect = document.getElementById('timB');
     const btnPrediksi = document.getElementById('btnPrediksi');
     const resultDiv = document.getElementById('result');
+    const loadingEl = document.getElementById('loading');
+    const apiBadge = document.getElementById('apiBadge');
 
     let lastResult = {};
+    const apiCache = {}; // Cache data API per liga
 
-    // ==== FUNGSI: BUAT INISIAL DARI NAMA TIM ====
+    // Inisial nama tim (fallback logo)
     function getInitials(name) {
       if (!name) return '?';
-      // Ambil kata pertama & terakhir, ambil huruf pertamanya
       const words = name.trim().split(/\s+/);
-      if (words.length === 1) {
-        return words[0].substring(0, 2).toUpperCase();
-      }
+      if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
       return (words[0][0] + words[words.length - 1][0]).toUpperCase();
     }
 
-    // ==== FUNGSI: UPDATE LOGO / INISIAL ====
+    // Update logo preview
     function updateLogos() {
       const timA = timASelect.value;
       const timB = timBSelect.value;
-
+      const liga = ligaSelect.value;
       const logoA = document.getElementById('logoA');
       const logoB = document.getElementById('logoB');
       const logoNameA = document.getElementById('logoNameA');
       const logoNameB = document.getElementById('logoNameB');
+      const cached = apiCache[liga] || {};
+      const fallback = teamsDataFallback[liga] || {};
 
       // Tim A
       if (timA) {
         logoNameA.textContent = timA;
-        logoA.textContent = getInitials(timA);
+        const logoUrl = cached[timA]?.logo;
+        if (logoUrl) {
+          logoA.innerHTML = `<img src="${logoUrl}" alt="${timA}" onerror="this.parentNode.textContent='${getInitials(timA)}'">`;
+        } else {
+          logoA.textContent = getInitials(timA);
+        }
       } else {
         logoA.textContent = '?';
         logoNameA.textContent = 'Tim A';
@@ -573,34 +569,94 @@
       // Tim B
       if (timB) {
         logoNameB.textContent = timB;
-        logoB.textContent = getInitials(timB);
+        const logoUrl = cached[timB]?.logo;
+        if (logoUrl) {
+          logoB.innerHTML = `<img src="${logoUrl}" alt="${timB}" onerror="this.parentNode.textContent='${getInitials(timB)}'">`;
+        } else {
+          logoB.textContent = getInitials(timB);
+        }
       } else {
         logoB.textContent = '?';
         logoNameB.textContent = 'Tim B';
       }
     }
 
-    // ==== EVENT LIGA ====
-    ligaSelect.addEventListener('change', () => {
+    // Event: ganti liga
+    ligaSelect.addEventListener('change', async () => {
       const liga = ligaSelect.value;
-      timASelect.innerHTML = '<option value="">Tim A</option>';
-      timBSelect.innerHTML = '<option value="">Tim B</option>';
+      timASelect.innerHTML = '<option value="">Loading...</option>';
+      timBSelect.innerHTML = '<option value="">Loading...</option>';
+      resultDiv.classList.remove('show');
+      apiBadge.textContent = '';
+      apiBadge.className = 'api-badge';
+      updateLogos();
 
-      if (liga && teamsData[liga]) {
-        Object.keys(teamsData[liga]).forEach(team => {
-          timASelect.innerHTML += `<option value="${team}">${team}</option>`;
-          timBSelect.innerHTML += `<option value="${team}">${team}</option>`;
-        });
+      if (!liga) {
+        timASelect.innerHTML = '<option value="">Tim A</option>';
+        timBSelect.innerHTML = '<option value="">Tim B</option>';
+        return;
       }
 
-      resultDiv.classList.remove('show');
-      updateLogos();
+      let teamList = [];
+      let teamData = {};
+
+      // Kalau liga pakai API
+      if (API_LIGA.includes(liga)) {
+        // Cek cache dulu
+        if (apiCache[liga]) {
+          teamData = apiCache[liga];
+          teamList = Object.keys(teamData);
+        } else {
+          loadingEl.classList.add('show');
+          try {
+            const res = await fetch(`${API_URL}/?liga=${liga}`);
+            if (!res.ok) throw new Error('API error');
+            const data = await res.json();
+            if (data.teams) {
+              apiCache[liga] = data.teams;
+              teamData = data.teams;
+              teamList = Object.keys(teamData);
+              apiBadge.textContent = `⚡ Data live dari Football-Data.org (${data.season || ''})`;
+              apiBadge.classList.add('live');
+            } else {
+              throw new Error('No teams data');
+            }
+          } catch (err) {
+            // Fallback kalau API gagal
+            const fallback = teamsDataFallback[liga];
+            if (fallback) {
+              teamList = Object.keys(fallback);
+              teamList.forEach(t => { teamData[t] = { score: fallback[t], logo: null }; });
+              apiBadge.textContent = '⚠️ API gagal, pakai data manual';
+              apiBadge.classList.add('manual');
+            }
+          } finally {
+            loadingEl.classList.remove('show');
+          }
+        }
+      } else {
+        // Liga manual
+        const fallback = teamsDataFallback[liga];
+        if (fallback) {
+          teamList = Object.keys(fallback);
+          teamList.forEach(t => { teamData[t] = { score: fallback[t], logo: null }; });
+          apiBadge.textContent = '📋 Data manual';
+          apiBadge.classList.add('manual');
+        }
+      }
+
+      timASelect.innerHTML = '<option value="">Tim A</option>';
+      timBSelect.innerHTML = '<option value="">Tim B</option>';
+      teamList.forEach(team => {
+        timASelect.innerHTML += `<option value="${team}">${team}</option>`;
+        timBSelect.innerHTML += `<option value="${team}">${team}</option>`;
+      });
     });
 
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
-    // ==== PREDIKSI ====
+    // Tombol prediksi
     btnPrediksi.addEventListener('click', () => {
       const timA = timASelect.value;
       const timB = timBSelect.value;
@@ -615,9 +671,16 @@
         return;
       }
 
-      const dataTim = teamsData[liga] || {};
-      const skorA = dataTim[timA] || 75;
-      const skorB = dataTim[timB] || 75;
+      // Ambil skor dari cache API atau fallback
+      let skorA, skorB;
+      if (apiCache[liga] && apiCache[liga][timA]) {
+        skorA = apiCache[liga][timA].strength;
+        skorB = apiCache[liga][timB]?.strength || 75;
+      } else {
+        const fallback = teamsDataFallback[liga] || {};
+        skorA = fallback[timA] || 75;
+        skorB = fallback[timB] || 75;
+      }
 
       const totalSkor = skorA + skorB;
       const drawWeight = 15;
@@ -658,7 +721,7 @@
       };
     });
 
-    // ==== SHARE ====
+    // Share
     function shareTo(platform) {
       if (!lastResult.timA) {
         alert('Prediksi dulu bre sebelum share!');
