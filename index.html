@@ -9,13 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
 
     body {
       min-height: 100vh;
@@ -24,502 +18,385 @@
         radial-gradient(circle at 20% 80%, rgba(168, 132, 42, 0.12), transparent 50%),
         linear-gradient(rgba(10, 10, 15, 0.88), rgba(10, 10, 15, 0.96)),
         url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1920&q=80') center/cover no-repeat fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      color: #f5f5f5;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
+      display: flex; align-items: center; justify-content: center; padding: 20px; color: #f5f5f5;
+      user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
     }
 
     .container {
-      width: 100%;
-      max-width: 480px;
+      width: 100%; max-width: 500px;
       background: linear-gradient(145deg, rgba(25, 25, 38, 0.85), rgba(12, 12, 20, 0.92));
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 20px;
-      padding: 36px 30px;
-      box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.8),
-        0 0 60px rgba(212, 175, 55, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(212, 175, 55, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.06);
       position: relative;
     }
 
     .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      border-radius: 2px;
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); border-radius: 2px;
     }
 
-    .logo {
-      text-align: center;
-      margin-bottom: 32px;
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .header-top button {
+      background: transparent; border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #d4af37; font-size: 11px; padding: 6px 12px; border-radius: 8px;
+      cursor: pointer; font-weight: 600; letter-spacing: 0.5px; transition: all 0.2s;
     }
+    .header-top button:hover { background: rgba(212, 175, 55, 0.1); border-color: #d4af37; }
 
-    .logo .crown {
-      font-size: 38px;
-      margin-bottom: 6px;
-      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.6));
-    }
-
+    .logo { text-align: center; margin-bottom: 20px; }
+    .logo .crown { font-size: 38px; margin-bottom: 6px; filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.6)); }
     .logo h1 {
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: 1px;
+      font-size: 34px; font-weight: 800; letter-spacing: 1px;
       background: linear-gradient(180deg, #f5e6a8 0%, #d4af37 50%, #a8842a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
+    .logo p { font-size: 11px; color: #a1a1aa; margin-top: 8px; letter-spacing: 3px; text-transform: uppercase; }
 
-    .logo p {
-      font-size: 11px;
-      color: #a1a1aa;
-      margin-top: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .mode-tabs {
+      display: flex; gap: 6px; margin-bottom: 18px;
+      background: rgba(0, 0, 0, 0.4); padding: 4px; border-radius: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .mode-tabs button {
+      flex: 1; padding: 9px 6px; background: transparent; border: none;
+      color: #a1a1aa; font-size: 11px; font-weight: 600; cursor: pointer;
+      border-radius: 7px; transition: all 0.2s; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .mode-tabs button.active {
+      background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
+      color: #0a0a0f; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
     }
 
     label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      color: #a1a1aa;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      display: block; font-size: 11px; font-weight: 600; color: #a1a1aa;
+      margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;
     }
 
     select {
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(10, 10, 15, 0.75);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 10px;
-      color: #f5f5f5;
-      font-size: 14px;
-      cursor: pointer;
-      outline: none;
-      transition: all 0.25s ease;
-      margin-bottom: 18px;
-      appearance: none;
+      width: 100%; padding: 14px 16px; background: rgba(10, 10, 15, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 10px; color: #f5f5f5;
+      font-size: 14px; cursor: pointer; outline: none; transition: all 0.25s ease;
+      margin-bottom: 16px; appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      font-weight: 500;
+      background-repeat: no-repeat; background-position: right 16px center; font-weight: 500;
     }
+    select:focus { border-color: #d4af37; background-color: rgba(212, 175, 55, 0.08); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12); }
+    select option { background: #13131a; color: #f5f5f5; }
 
-    select:focus {
-      border-color: #d4af37;
-      background-color: rgba(212, 175, 55, 0.08);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
-    }
-
-    select option {
-      background: #13131a;
-      color: #f5f5f5;
-    }
-
-    .vs-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .vs-row select {
-      margin-bottom: 0;
-    }
-
-    .vs-badge {
-      font-size: 11px;
-      font-weight: 800;
-      color: #d4af37;
-      padding: 0 4px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-    }
+    .vs-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .vs-row select { margin-bottom: 0; flex: 1; min-width: 0; }
+    .vs-badge { font-size: 11px; font-weight: 800; color: #d4af37; padding: 0 4px; letter-spacing: 1px; }
 
     .logo-preview {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      gap: 12px;
-      margin-top: 20px;
-      padding: 18px 12px;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 14px;
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      display: flex; align-items: center; justify-content: space-around; gap: 12px;
+      margin-top: 16px; padding: 16px 12px; background: rgba(0, 0, 0, 0.4);
+      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.15);
     }
-
-    .logo-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      flex: 1;
-    }
-
+    .logo-box { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; min-width: 0; }
     .logo-circle {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
+      width: 60px; height: 60px; border-radius: 50%;
       background: linear-gradient(145deg, #2a2a3e, #15151f);
       border: 2px solid rgba(212, 175, 55, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 800;
-      color: #d4af37;
-      letter-spacing: 1px;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: #d4af37;
+      overflow: hidden; transition: all 0.3s ease;
     }
+    .logo-circle img { width: 85%; height: 85%; object-fit: contain; }
+    .logo-circle:hover { transform: scale(1.08); border-color: #d4af37; box-shadow: 0 0 24px rgba(212, 175, 55, 0.5); }
+    .logo-name { font-size: 10px; color: #a1a1aa; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    .logo-circle img {
-      width: 85%;
-      height: 85%;
-      object-fit: contain;
-    }
-
-    .logo-circle:hover {
-      transform: scale(1.08);
-      border-color: #d4af37;
-      box-shadow: 0 0 24px rgba(212, 175, 55, 0.5);
-    }
-
-    .logo-name {
-      font-size: 10px;
-      color: #a1a1aa;
-      text-align: center;
-      letter-spacing: 0.5px;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    #btnPrediksi {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
-      border: none;
-      border-radius: 10px;
-      color: #0a0a0f;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      margin-top: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    #btnPrediksi, #btnCompare {
+      width: 100%; padding: 16px; background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
+      border: none; border-radius: 10px; color: #0a0a0f; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: all 0.25s ease; margin-top: 16px;
+      letter-spacing: 1px; text-transform: uppercase;
       box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
     }
-
-    #btnPrediksi:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(212, 175, 55, 0.5);
-      filter: brightness(1.05);
-    }
-
-    #btnPrediksi:active {
-      transform: translateY(0);
-    }
+    #btnPrediksi:hover, #btnCompare:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(212, 175, 55, 0.5); filter: brightness(1.05); }
 
     .result {
-      margin-top: 24px;
-      padding: 22px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 14px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      display: none;
+      margin-top: 20px; padding: 20px; background: rgba(0, 0, 0, 0.5);
+      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.2); display: none;
     }
+    .result.show { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .result.show {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
+    .result-title { text-align: center; font-size: 13px; color: #a1a1aa; margin-bottom: 16px; }
+    .result-title strong { color: #f5f5f5; font-size: 14px; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .result-title {
-      text-align: center;
-      font-size: 13px;
-      color: #a1a1aa;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
-    }
-
-    .result-title strong {
-      color: #f5f5f5;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .bar-item {
-      margin-bottom: 16px;
-    }
-
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      margin-bottom: 6px;
-      color: #d4d4d8;
-      letter-spacing: 0.3px;
-    }
-
-    .bar-track {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      border-radius: 10px;
-      transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 0;
-    }
-
+    .bar-item { margin-bottom: 14px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #d4d4d8; }
+    .bar-track { height: 8px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 10px; transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1); width: 0; }
     .bar-a { background: linear-gradient(90deg, #d4af37, #f5e6a8); box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); }
     .bar-draw { background: linear-gradient(90deg, #52525b, #a1a1aa); }
-    .bar-b { background: linear-gradient(90deg, #a8842a, #d4af37); box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); }
+    .bar-b { background: linear-gradient(90deg, #a8842a, #d4af37); }
 
     .winner {
-      text-align: center;
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      font-size: 13px;
-      color: #a1a1aa;
-      letter-spacing: 0.5px;
+      text-align: center; margin-top: 18px; padding-top: 16px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2); font-size: 13px; color: #a1a1aa;
     }
+    .winner strong { color: #d4af37; font-size: 15px; font-weight: 700; }
 
-    .winner strong {
-      color: #d4af37;
-      font-size: 15px;
-      font-weight: 700;
-      text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
-    }
-
-    .share-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(212, 175, 55, 0.15);
-    }
-
+    .share-row { display: flex; gap: 6px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(212, 175, 55, 0.15); }
     .share-btn {
-      flex: 1;
-      padding: 10px 8px;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 8px;
-      color: #d4d4d8;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      letter-spacing: 0.3px;
+      flex: 1; padding: 10px 4px; background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px;
+      color: #d4d4d8; font-size: 10px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
     }
-
-    .share-btn:hover {
-      background: rgba(212, 175, 55, 0.15);
-      border-color: #d4af37;
-      color: #d4af37;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-    }
-
+    .share-btn:hover { background: rgba(212, 175, 55, 0.15); border-color: #d4af37; color: #d4af37; transform: translateY(-1px); }
     .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
     .share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
 
-    .loading {
-      text-align: center;
-      font-size: 12px;
-      color: #71717a;
-      margin-top: 12px;
-      display: none;
-    }
-
+    .loading { text-align: center; font-size: 12px; color: #71717a; margin-top: 10px; display: none; }
     .loading.show { display: block; }
-
-    .api-badge {
-      text-align: center;
-      font-size: 10px;
-      color: #52525b;
-      margin-top: 8px;
-      letter-spacing: 1px;
-    }
-
+    .api-badge { text-align: center; font-size: 10px; color: #52525b; margin-top: 8px; letter-spacing: 1px; }
     .api-badge.live { color: #22c55e; }
     .api-badge.manual { color: #f59e0b; }
 
-    .watermark {
-      text-align: center;
-      font-size: 10px;
-      color: #52525b;
-      margin-top: 22px;
-      letter-spacing: 1px;
+    .history-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(212, 175, 55, 0.15); }
+    .history-title {
+      font-size: 11px; color: #a1a1aa; text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 10px; display: flex;
+      justify-content: space-between; align-items: center;
     }
+    .history-title button {
+      background: transparent; border: 1px solid rgba(220, 38, 38, 0.3);
+      color: #ef4444; font-size: 9px; padding: 3px 8px; border-radius: 6px;
+      cursor: pointer; font-weight: 600;
+    }
+    .history-list { max-height: 140px; overflow-y: auto; }
+    .history-list::-webkit-scrollbar { width: 4px; }
+    .history-list::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 2px; }
+    .history-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 10px; background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px; margin-bottom: 6px; font-size: 11px;
+      border: 1px solid rgba(212, 175, 55, 0.08);
+    }
+    .history-item .hi-match { color: #d4d4d8; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .history-item .hi-winner { color: #d4af37; font-weight: 700; font-size: 10px; }
+    .history-empty { text-align: center; font-size: 11px; color: #52525b; padding: 10px; }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .compare-grid select { margin-bottom: 0; font-size: 12px; padding: 12px 14px; }
+    .compare-result {
+      margin-top: 16px; padding: 16px; background: rgba(0, 0, 0, 0.5);
+      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.2); display: none;
+    }
+    .compare-result.show { display: block; animation: fadeIn 0.4s ease; }
+    .compare-result h3 { font-size: 12px; color: #d4af37; text-align: center; margin-bottom: 14px; letter-spacing: 1px; text-transform: uppercase; }
+    .compare-team-row {
+      display: flex; align-items: center; gap: 10px; padding: 10px;
+      background: rgba(0, 0, 0, 0.3); border-radius: 10px; margin-bottom: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    .compare-team-row.winner-row { border-color: #d4af37; background: rgba(212, 175, 55, 0.08); }
+    .compare-logo {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #d4af37; overflow: hidden; flex-shrink: 0;
+    }
+    .compare-logo img { width: 85%; height: 85%; object-fit: contain; }
+    .compare-info { flex: 1; min-width: 0; }
+    .compare-name { font-size: 12px; color: #f5f5f5; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .compare-pct { font-size: 16px; color: #d4af37; font-weight: 800; }
+
+    .watermark { text-align: center; font-size: 10px; color: #52525b; margin-top: 18px; letter-spacing: 1px; }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+      z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+    .modal-content {
+      background: linear-gradient(145deg, rgba(30, 30, 45, 0.98), rgba(15, 15, 25, 0.98));
+      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px;
+      padding: 26px 22px; max-width: 420px; width: 100%;
+      max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+    }
+    .modal-content h2 { font-size: 20px; color: #d4af37; margin-bottom: 16px; text-align: center; }
+    .modal-content h3 { font-size: 13px; color: #d4af37; margin-top: 14px; margin-bottom: 8px; }
+    .modal-content p, .modal-content li { font-size: 12px; color: #d4d4d8; line-height: 1.7; margin-bottom: 6px; }
+    .modal-content ul { padding-left: 20px; }
+    .modal-content li { list-style: disc; }
+    .modal-close {
+      width: 100%; padding: 12px; background: linear-gradient(135deg, #d4af37, #a8842a);
+      border: none; border-radius: 10px; color: #0a0a0f;
+      font-weight: 700; font-size: 13px; cursor: pointer;
+      margin-top: 16px; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .modal-close:hover { filter: brightness(1.1); }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="header-top">
+      <button onclick="openModal('howto')">❓ Cara Kerja</button>
+      <button onclick="openModal('about')">ℹ️ About</button>
+    </div>
+
     <div class="logo">
       <div class="crown">👑</div>
       <h1>SkorDuel</h1>
       <p>Prediksi Tim A vs Tim B</p>
     </div>
 
-    <label for="liga">Pilih Liga</label>
-    <select id="liga">
-      <option value="">-- Pilih Liga --</option>
-      <option value="premier-league">Premier League (Inggris) ⚡</option>
-      <option value="la-liga">La Liga (Spanyol) ⚡</option>
-      <option value="serie-a">Serie A (Italia) ⚡</option>
-      <option value="bundesliga">Bundesliga (Jerman) ⚡</option>
-      <option value="ligue-1">Ligue 1 (Prancis) ⚡</option>
-      <option value="saudi-pro-league">Saudi Pro League</option>
-      <option value="j1-league">J1 League (Jepang)</option>
-      <option value="mls">MLS (Amerika Serikat)</option>
-      <option value="liga-1-indonesia">Liga 1 (Indonesia)</option>
-    </select>
-
-    <label>Pilih Tim</label>
-    <div class="vs-row">
-      <select id="timA">
-        <option value="">Tim A</option>
-      </select>
-      <span class="vs-badge">VS</span>
-      <select id="timB">
-        <option value="">Tim B</option>
-      </select>
+    <div class="mode-tabs">
+      <button class="active" id="tabDuel" onclick="switchMode('duel')">⚔️ Duel 1v1</button>
+      <button id="tabCompare" onclick="switchMode('compare')">🏆 Compare 4</button>
     </div>
 
-    <div class="logo-preview">
-      <div class="logo-box">
-        <div class="logo-circle" id="logoA">?</div>
-        <span class="logo-name" id="logoNameA">Tim A</span>
+    <!-- MODE DUEL -->
+    <div id="modeDuel">
+      <label for="liga">Pilih Liga</label>
+      <select id="liga">
+        <option value="">-- Pilih Liga --</option>
+        <option value="premier-league">Premier League ⚡</option>
+        <option value="la-liga">La Liga ⚡</option>
+        <option value="serie-a">Serie A ⚡</option>
+        <option value="bundesliga">Bundesliga ⚡</option>
+        <option value="ligue-1">Ligue 1 ⚡</option>
+        <option value="eredivisie">Eredivisie (Belanda) ⚡</option>
+        <option value="primeira-liga">Primeira Liga (Portugal) ⚡</option>
+        <option value="championship">Championship (Div 2 Inggris) ⚡</option>
+        <option value="saudi-pro-league">Saudi Pro League</option>
+        <option value="j1-league">J1 League (Jepang)</option>
+        <option value="mls">MLS (Amerika Serikat)</option>
+        <option value="liga-1-indonesia">Liga 1 (Indonesia)</option>
+      </select>
+
+      <label>Pilih Tim</label>
+      <div class="vs-row">
+        <select id="timA"><option value="">Tim A</option></select>
+        <span class="vs-badge">VS</span>
+        <select id="timB"><option value="">Tim B</option></select>
       </div>
-      <span class="vs-badge">VS</span>
-      <div class="logo-box">
-        <div class="logo-circle" id="logoB">?</div>
-        <span class="logo-name" id="logoNameB">Tim B</span>
+
+      <div class="logo-preview">
+        <div class="logo-box">
+          <div class="logo-circle" id="logoA">?</div>
+          <span class="logo-name" id="logoNameA">Tim A</span>
+        </div>
+        <span class="vs-badge">VS</span>
+        <div class="logo-box">
+          <div class="logo-circle" id="logoB">?</div>
+          <span class="logo-name" id="logoNameB">Tim B</span>
+        </div>
+      </div>
+
+      <div class="loading" id="loading">⏳ Mengambil data...</div>
+      <div class="api-badge" id="apiBadge"></div>
+
+      <button id="btnPrediksi">🔮 Prediksi Sekarang</button>
+
+      <div class="result" id="result">
+        <div class="result-title" id="resultTitle"></div>
+        <div class="bar-item">
+          <div class="bar-label"><span id="labelA">Tim A</span><span id="pctA">0%</span></div>
+          <div class="bar-track"><div class="bar-fill bar-a" id="fillA"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span>Draw</span><span id="pctDraw">0%</span></div>
+          <div class="bar-track"><div class="bar-fill bar-draw" id="fillDraw"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label"><span id="labelB">Tim B</span><span id="pctB">0%</span></div>
+          <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
+        </div>
+        <div class="winner" id="winner"></div>
+        <div class="share-row">
+          <button class="share-btn wa" onclick="shareTo('wa')">📱 WA</button>
+          <button class="share-btn tw" onclick="shareTo('tw')">🐦 X</button>
+          <button class="share-btn copy" onclick="shareTo('copy')">🔗 Copy</button>
+          <button class="share-btn" onclick="shareTo('link')">📤 Link</button>
+        </div>
       </div>
     </div>
 
-    <div class="loading" id="loading">⏳ Mengambil data dari Football-Data.org...</div>
-    <div class="api-badge" id="apiBadge"></div>
+    <!-- MODE COMPARE -->
+    <div id="modeCompare" style="display:none;">
+      <label>Pilih Liga</label>
+      <select id="ligaCompare">
+        <option value="">-- Pilih Liga --</option>
+        <option value="premier-league">Premier League ⚡</option>
+        <option value="la-liga">La Liga ⚡</option>
+        <option value="serie-a">Serie A ⚡</option>
+        <option value="bundesliga">Bundesliga ⚡</option>
+        <option value="ligue-1">Ligue 1 ⚡</option>
+        <option value="eredivisie">Eredivisie ⚡</option>
+        <option value="primeira-liga">Primeira Liga ⚡</option>
+        <option value="championship">Championship ⚡</option>
+        <option value="saudi-pro-league">Saudi Pro League</option>
+        <option value="j1-league">J1 League</option>
+        <option value="mls">MLS</option>
+        <option value="liga-1-indonesia">Liga 1</option>
+      </select>
 
-    <button id="btnPrediksi">🔮 Prediksi Sekarang</button>
+      <label>Pilih 3-4 Tim</label>
+      <div class="compare-grid">
+        <select id="cTim1"><option value="">Tim 1</option></select>
+        <select id="cTim2"><option value="">Tim 2</option></select>
+        <select id="cTim3"><option value="">Tim 3</option></select>
+        <select id="cTim4"><option value="">Tim 4 (opsional)</option></select>
+      </div>
 
-    <div class="result" id="result">
-      <div class="result-title" id="resultTitle"></div>
-      <div class="bar-item">
-        <div class="bar-label"><span id="labelA">Tim A</span><span id="pctA">0%</span></div>
-        <div class="bar-track"><div class="bar-fill bar-a" id="fillA"></div></div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label"><span>Draw</span><span id="pctDraw">0%</span></div>
-        <div class="bar-track"><div class="bar-fill bar-draw" id="fillDraw"></div></div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label"><span id="labelB">Tim B</span><span id="pctB">0%</span></div>
-        <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
-      </div>
-      <div class="winner" id="winner"></div>
+      <button id="btnCompare">🏆 Bandingkan</button>
 
-      <div class="share-row">
-        <button class="share-btn wa" onclick="shareTo('wa')">📱 WhatsApp</button>
-        <button class="share-btn tw" onclick="shareTo('tw')">🐦 Twitter</button>
-        <button class="share-btn copy" onclick="shareTo('copy')">🔗 Copy</button>
+      <div class="compare-result" id="compareResult">
+        <h3>Hasil Perbandingan</h3>
+        <div id="compareRows"></div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="history-section">
+      <div class="history-title">
+        <span>📜 History Prediksi</span>
+        <button onclick="clearHistory()">Hapus</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="history-empty">Belum ada history</div>
       </div>
     </div>
 
     <div class="watermark">© 2025 SKORDUEL — ALL RIGHTS RESERVED</div>
   </div>
 
+  <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
   <script>
-    // 🔒 Proteksi anti-copy
+    // 🔒 Anti-copy
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('selectstart', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
-
     document.addEventListener('keydown', e => {
-      if (
-        (e.ctrlKey && ['c','u','s','a','p'].includes(e.key.toLowerCase())) ||
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))
-      ) {
-        e.preventDefault();
-        return false;
+      if ((e.ctrlKey && ['c','u','s','a','p'].includes(e.key.toLowerCase())) ||
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
+        e.preventDefault(); return false;
       }
     });
-
     console.log = console.warn = console.error = () => {};
 
-    // 🌐 URL Worker API
     const API_URL = 'https://skorduel-api.rehantobing31.workers.dev';
 
-    // 📊 Data fallback (liga yang gak ada di Football-Data.org)
     const teamsDataFallback = {
-      'saudi-pro-league': {
-        "Al Hilal": 88, "Al Nassr": 86, "Al Ittihad": 84, "Al Ahli": 82,
-        "Al Qadsiah": 78, "Neom SC": 76, "Al Shabab": 74, "Al Ettifaq": 73,
-        "Al Taawoun": 72, "Al Khaleej": 71, "Al Fateh": 70, "Al Riyadh": 69,
-        "Al Fayha": 68, "Al Hazem": 67, "Al Kholood": 66, "Diriyah": 66,
-        "Al Faisaly": 65, "Abha": 64
-      },
-      'j1-league': {
-        "Vissel Kobe": 80, "Kashima Antlers": 79, "Machida Zelvia": 78, "Sanfrecce Hiroshima": 77,
-        "Kashiwa Reysol": 76, "Yokohama F. Marinos": 76, "Cerezo Osaka": 75, "FC Tokyo": 74,
-        "Urawa Reds": 74, "Kawasaki Frontale": 73, "Gamba Osaka": 72, "Nagoya Grampus": 72,
-        "Fagiano Okayama": 71, "Kyoto Sanga": 70, "Avispa Fukuoka": 70, "Shimizu S-Pulse": 69,
-        "Tokyo Verdy": 68, "Mito Hollyhock": 68, "V-Varen Nagasaki": 67, "JEF United": 66
-      },
-      'mls': {
-        "Inter Miami": 82, "LAFC": 81, "LA Galaxy": 79, "Columbus Crew": 78,
-        "Seattle Sounders": 77, "FC Cincinnati": 76, "Philadelphia Union": 76, "Atlanta United": 75,
-        "New York City FC": 74, "New York Red Bulls": 74, "Portland Timbers": 73, "Nashville SC": 73,
-        "Orlando City": 72, "Charlotte FC": 72, "Austin FC": 71, "Houston Dynamo": 71,
-        "FC Dallas": 70, "Minnesota Stars": 70, "Real Salt Lake": 69, "Vancouver Whitecaps": 69,
-        "Colorado Rapids": 68, "Sporting Kansas City": 68, "St. Louis City": 68, "New England Revolution": 67,
-        "Chicago Fire": 67, "DC United": 66, "Toronto FC": 66, "CF Montreal": 65,
-        "San Jose Earthquakes": 65, "San Diego FC": 70
-      },
-      'liga-1-indonesia': {
-        "Persib Bandung": 80, "Bali United": 79, "Persija Jakarta": 78, "Arema FC": 76,
-        "PSM Makassar": 76, "Borneo FC": 75, "Madura United": 74, "Persebaya Surabaya": 74,
-        "Dewa United": 73, "Persita Tangerang": 72, "PSS Sleman": 71, "Persik Kediri": 71,
-        "Bhayangkara FC": 70, "PSIM Yogyakarta": 69, "Garudayaksa FC": 68, "Persijap Jepara": 67,
-        "Java United": 66, "Isenmulang FC": 65
-      }
+      'saudi-pro-league': {"Al Hilal":88,"Al Nassr":86,"Al Ittihad":84,"Al Ahli":82,"Al Qadsiah":78,"Neom SC":76,"Al Shabab":74,"Al Ettifaq":73,"Al Taawoun":72,"Al Khaleej":71,"Al Fateh":70,"Al Riyadh":69,"Al Fayha":68,"Al Hazem":67,"Al Kholood":66,"Diriyah":66,"Al Faisaly":65,"Abha":64},
+      'j1-league': {"Vissel Kobe":80,"Kashima Antlers":79,"Machida Zelvia":78,"Sanfrecce Hiroshima":77,"Kashiwa Reysol":76,"Yokohama F. Marinos":76,"Cerezo Osaka":75,"FC Tokyo":74,"Urawa Reds":74,"Kawasaki Frontale":73,"Gamba Osaka":72,"Nagoya Grampus":72,"Fagiano Okayama":71,"Kyoto Sanga":70,"Avispa Fukuoka":70,"Shimizu S-Pulse":69,"Tokyo Verdy":68,"Mito Hollyhock":68,"V-Varen Nagasaki":67,"JEF United":66},
+      'mls': {"Inter Miami":82,"LAFC":81,"LA Galaxy":79,"Columbus Crew":78,"Seattle Sounders":77,"FC Cincinnati":76,"Philadelphia Union":76,"Atlanta United":75,"New York City FC":74,"New York Red Bulls":74,"Portland Timbers":73,"Nashville SC":73,"Orlando City":72,"Charlotte FC":72,"Austin FC":71,"Houston Dynamo":71,"FC Dallas":70,"Minnesota Stars":70,"Real Salt Lake":69,"Vancouver Whitecaps":69,"Colorado Rapids":68,"Sporting Kansas City":68,"St. Louis City":68,"New England Revolution":67,"Chicago Fire":67,"DC United":66,"Toronto FC":66,"CF Montreal":65,"San Jose Earthquakes":65,"San Diego FC":70},
+      'liga-1-indonesia': {"Persib Bandung":80,"Bali United":79,"Persija Jakarta":78,"Arema FC":76,"PSM Makassar":76,"Borneo FC":75,"Madura United":74,"Persebaya Surabaya":74,"Dewa United":73,"Persita Tangerang":72,"PSS Sleman":71,"Persik Kediri":71,"Bhayangkara FC":70,"PSIM Yogyakarta":69,"Garudayaksa FC":68,"Persijap Jepara":67,"Java United":66,"Isenmulang FC":65}
     };
 
-    // Liga yang pakai API Football-Data.org
-    const API_LIGA = ['premier-league', 'la-liga', 'serie-a', 'bundesliga', 'ligue-1'];
+    const API_LIGA = ['premier-league','la-liga','serie-a','bundesliga','ligue-1','eredivisie','primeira-liga','championship'];
 
     const ligaSelect = document.getElementById('liga');
     const timASelect = document.getElementById('timA');
@@ -530,9 +407,8 @@
     const apiBadge = document.getElementById('apiBadge');
 
     let lastResult = {};
-    const apiCache = {}; // Cache data API per liga
+    const apiCache = {};
 
-    // Inisial nama tim (fallback logo)
     function getInitials(name) {
       if (!name) return '?';
       const words = name.trim().split(/\s+/);
@@ -540,56 +416,57 @@
       return (words[0][0] + words[words.length - 1][0]).toUpperCase();
     }
 
-    // Update logo preview
     function updateLogos() {
-      const timA = timASelect.value;
-      const timB = timBSelect.value;
-      const liga = ligaSelect.value;
-      const logoA = document.getElementById('logoA');
-      const logoB = document.getElementById('logoB');
-      const logoNameA = document.getElementById('logoNameA');
-      const logoNameB = document.getElementById('logoNameB');
+      const timA = timASelect.value, timB = timBSelect.value, liga = ligaSelect.value;
+      const logoA = document.getElementById('logoA'), logoB = document.getElementById('logoB');
+      const logoNameA = document.getElementById('logoNameA'), logoNameB = document.getElementById('logoNameB');
       const cached = apiCache[liga] || {};
-      const fallback = teamsDataFallback[liga] || {};
 
-      // Tim A
       if (timA) {
         logoNameA.textContent = timA;
-        const logoUrl = cached[timA]?.logo;
-        if (logoUrl) {
-          logoA.innerHTML = `<img src="${logoUrl}" alt="${timA}" onerror="this.parentNode.textContent='${getInitials(timA)}'">`;
-        } else {
-          logoA.textContent = getInitials(timA);
-        }
-      } else {
-        logoA.textContent = '?';
-        logoNameA.textContent = 'Tim A';
-      }
+        const url = cached[timA]?.logo;
+        logoA.innerHTML = url ? `<img src="${url}" alt="${timA}" onerror="this.parentNode.textContent='${getInitials(timA)}'">` : getInitials(timA);
+      } else { logoA.textContent = '?'; logoNameA.textContent = 'Tim A'; }
 
-      // Tim B
       if (timB) {
         logoNameB.textContent = timB;
-        const logoUrl = cached[timB]?.logo;
-        if (logoUrl) {
-          logoB.innerHTML = `<img src="${logoUrl}" alt="${timB}" onerror="this.parentNode.textContent='${getInitials(timB)}'">`;
-        } else {
-          logoB.textContent = getInitials(timB);
+        const url = cached[timB]?.logo;
+        logoB.innerHTML = url ? `<img src="${url}" alt="${timB}" onerror="this.parentNode.textContent='${getInitials(timB)}'">` : getInitials(timB);
+      } else { logoB.textContent = '?'; logoNameB.textContent = 'Tim B'; }
+    }
+
+    async function fetchLiga(liga) {
+      if (apiCache[liga]) return apiCache[liga];
+      if (!API_LIGA.includes(liga)) {
+        const fb = teamsDataFallback[liga] || {};
+        const obj = {}; Object.keys(fb).forEach(t => obj[t] = { score: fb[t], logo: null });
+        return obj;
+      }
+      try {
+        loadingEl.classList.add('show');
+        const res = await fetch(`${API_URL}/?liga=${liga}`);
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        if (data.teams) {
+          apiCache[liga] = data.teams;
+          return data.teams;
         }
-      } else {
-        logoB.textContent = '?';
-        logoNameB.textContent = 'Tim B';
+        throw new Error('No teams');
+      } catch (e) {
+        const fb = teamsDataFallback[liga] || {};
+        const obj = {}; Object.keys(fb).forEach(t => obj[t] = { score: fb[t], logo: null });
+        return obj;
+      } finally {
+        loadingEl.classList.remove('show');
       }
     }
 
-    // Event: ganti liga
     ligaSelect.addEventListener('change', async () => {
       const liga = ligaSelect.value;
       timASelect.innerHTML = '<option value="">Loading...</option>';
       timBSelect.innerHTML = '<option value="">Loading...</option>';
       resultDiv.classList.remove('show');
-      apiBadge.textContent = '';
-      apiBadge.className = 'api-badge';
-      updateLogos();
+      apiBadge.textContent = ''; apiBadge.className = 'api-badge';
 
       if (!liga) {
         timASelect.innerHTML = '<option value="">Tim A</option>';
@@ -597,96 +474,47 @@
         return;
       }
 
-      let teamList = [];
-      let teamData = {};
-
-      // Kalau liga pakai API
-      if (API_LIGA.includes(liga)) {
-        // Cek cache dulu
-        if (apiCache[liga]) {
-          teamData = apiCache[liga];
-          teamList = Object.keys(teamData);
-        } else {
-          loadingEl.classList.add('show');
-          try {
-            const res = await fetch(`${API_URL}/?liga=${liga}`);
-            if (!res.ok) throw new Error('API error');
-            const data = await res.json();
-            if (data.teams) {
-              apiCache[liga] = data.teams;
-              teamData = data.teams;
-              teamList = Object.keys(teamData);
-              apiBadge.textContent = `⚡ Data live dari Football-Data.org (${data.season || ''})`;
-              apiBadge.classList.add('live');
-            } else {
-              throw new Error('No teams data');
-            }
-          } catch (err) {
-            // Fallback kalau API gagal
-            const fallback = teamsDataFallback[liga];
-            if (fallback) {
-              teamList = Object.keys(fallback);
-              teamList.forEach(t => { teamData[t] = { score: fallback[t], logo: null }; });
-              apiBadge.textContent = '⚠️ API gagal, pakai data manual';
-              apiBadge.classList.add('manual');
-            }
-          } finally {
-            loadingEl.classList.remove('show');
-          }
-        }
-      } else {
-        // Liga manual
-        const fallback = teamsDataFallback[liga];
-        if (fallback) {
-          teamList = Object.keys(fallback);
-          teamList.forEach(t => { teamData[t] = { score: fallback[t], logo: null }; });
-          apiBadge.textContent = '📋 Data manual';
-          apiBadge.classList.add('manual');
-        }
-      }
+      const data = await fetchLiga(liga);
+      const list = Object.keys(data);
 
       timASelect.innerHTML = '<option value="">Tim A</option>';
       timBSelect.innerHTML = '<option value="">Tim B</option>';
-      teamList.forEach(team => {
-        timASelect.innerHTML += `<option value="${team}">${team}</option>`;
-        timBSelect.innerHTML += `<option value="${team}">${team}</option>`;
+      list.forEach(t => {
+        timASelect.innerHTML += `<option value="${t}">${t}</option>`;
+        timBSelect.innerHTML += `<option value="${t}">${t}</option>`;
       });
+
+      if (API_LIGA.includes(liga)) {
+        apiBadge.textContent = '⚡ Data live dari Football-Data.org';
+        apiBadge.classList.add('live');
+      } else {
+        apiBadge.textContent = '📋 Data manual';
+        apiBadge.classList.add('manual');
+      }
+      updateLogos();
     });
 
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
-    // Tombol prediksi
     btnPrediksi.addEventListener('click', () => {
-      const timA = timASelect.value;
-      const timB = timBSelect.value;
-      const liga = ligaSelect.value;
+      const timA = timASelect.value, timB = timBSelect.value, liga = ligaSelect.value;
+      if (!timA || !timB) { alert('Pilih Tim A dan Tim B dulu bre!'); return; }
+      if (timA === timB) { alert('Tim A dan Tim B gak boleh sama bre!'); return; }
 
-      if (!timA || !timB) {
-        alert('Pilih Tim A dan Tim B dulu bre!');
-        return;
-      }
-      if (timA === timB) {
-        alert('Tim A dan Tim B gak boleh sama bre!');
-        return;
-      }
-
-      // Ambil skor dari cache API atau fallback
       let skorA, skorB;
       if (apiCache[liga] && apiCache[liga][timA]) {
         skorA = apiCache[liga][timA].strength;
         skorB = apiCache[liga][timB]?.strength || 75;
       } else {
-        const fallback = teamsDataFallback[liga] || {};
-        skorA = fallback[timA] || 75;
-        skorB = fallback[timB] || 75;
+        const fb = teamsDataFallback[liga] || {};
+        skorA = fb[timA] || 75; skorB = fb[timB] || 75;
       }
 
-      const totalSkor = skorA + skorB;
+      const total = skorA + skorB;
       const drawWeight = 15;
-
-      const pctA = Math.round((skorA / totalSkor) * (100 - drawWeight));
-      const pctB = Math.round((skorB / totalSkor) * (100 - drawWeight));
+      const pctA = Math.round((skorA / total) * (100 - drawWeight));
+      const pctB = Math.round((skorB / total) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
@@ -695,13 +523,11 @@
       document.getElementById('pctA').textContent = pctA + '%';
       document.getElementById('pctDraw').textContent = pctDraw + '%';
       document.getElementById('pctB').textContent = pctB + '%';
-
       resultDiv.classList.add('show');
 
       document.getElementById('fillA').style.width = '0';
       document.getElementById('fillDraw').style.width = '0';
       document.getElementById('fillB').style.width = '0';
-
       setTimeout(() => {
         document.getElementById('fillA').style.width = pctA + '%';
         document.getElementById('fillDraw').style.width = pctDraw + '%';
@@ -712,51 +538,179 @@
       if (pctA > pctB && pctA > pctDraw) winnerText = `🏆 Unggulan: <strong>${timA}</strong>`;
       else if (pctB > pctA && pctB > pctDraw) winnerText = `🏆 Unggulan: <strong>${timB}</strong>`;
       else winnerText = `🤝 Prediksi: <strong>Draw</strong>`;
-
       document.getElementById('winner').innerHTML = winnerText;
 
-      lastResult = {
-        timA, timB, pctA, pctB, pctDraw,
-        winner: winnerText.replace(/<[^>]*>/g, '')
-      };
+      lastResult = { timA, timB, pctA, pctB, pctDraw, winner: winnerText.replace(/<[^>]*>/g, '') };
+      saveHistory({ match: `${timA} vs ${timB}`, winner: winnerText.replace(/<[^>]*>/g, '').replace('🏆 Unggulan: ','').replace('🤝 Prediksi: ','') });
     });
 
-    // Share
-    function shareTo(platform) {
-      if (!lastResult.timA) {
-        alert('Prediksi dulu bre sebelum share!');
+    // COMPARE MODE
+    const ligaCompare = document.getElementById('ligaCompare');
+    const cTim1 = document.getElementById('cTim1'), cTim2 = document.getElementById('cTim2'),
+          cTim3 = document.getElementById('cTim3'), cTim4 = document.getElementById('cTim4');
+
+    ligaCompare.addEventListener('change', async () => {
+      const liga = ligaCompare.value;
+      [cTim1, cTim2, cTim3, cTim4].forEach(s => s.innerHTML = '<option value="">Loading...</option>');
+
+      if (!liga) {
+        [cTim1, cTim2, cTim3, cTim4].forEach(s => s.innerHTML = '<option value="">-</option>');
         return;
       }
 
-      const { timA, timB, pctA, pctB, pctDraw, winner } = lastResult;
+      const data = await fetchLiga(liga);
+      const list = Object.keys(data);
 
-      const text =
-`⚽ *SkorDuel* — Prediksi Pertandingan
+      [cTim1, cTim2, cTim3, cTim4].forEach((s, i) => {
+        s.innerHTML = `<option value="">Tim ${i+1}${i===3?' (opsional)':''}</option>`;
+        list.forEach(t => { s.innerHTML += `<option value="${t}">${t}</option>`; });
+      });
+    });
 
-${timA} vs ${timB}
+    document.getElementById('btnCompare').addEventListener('click', () => {
+      const liga = ligaCompare.value;
+      const tims = [cTim1.value, cTim2.value, cTim3.value, cTim4.value].filter(Boolean);
 
-🏆 ${timA}: ${pctA}%
-🤝 Draw: ${pctDraw}%
-🏆 ${timB}: ${pctB}%
+      if (tims.length < 3) { alert('Pilih minimal 3 tim bre!'); return; }
 
-${winner}
+      const data = apiCache[liga] || {};
+      const fb = teamsDataFallback[liga] || {};
 
-🔮 Cek prediksi tim favoritmu di:
-https://skorduel.pages.dev`;
+      const teams = tims.map(t => {
+        const strength = data[t]?.strength || fb[t] || 75;
+        const logo = data[t]?.logo || null;
+        return { name: t, strength, logo };
+      });
 
-      if (platform === 'wa') {
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-      } else if (platform === 'tw') {
-        const twText = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nCek di skorduel.pages.dev`;
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twText)}`, '_blank');
-      } else if (platform === 'copy') {
-        navigator.clipboard.writeText(text).then(() => {
-          alert('✅ Hasil prediksi berhasil di-copy!');
-        }).catch(() => {
-          alert('❌ Gagal copy, coba lagi ya bre');
-        });
+      const total = teams.reduce((sum, t) => sum + t.strength, 0);
+      teams.forEach(t => t.pct = Math.round((t.strength / total) * 85));
+      const drawPct = 100 - teams.reduce((sum, t) => sum + t.pct, 0);
+      teams.sort((a, b) => b.pct - a.pct);
+
+      const rows = teams.map((t, i) => {
+        const winnerClass = i === 0 ? 'winner-row' : '';
+        const logoHtml = t.logo ? `<img src="${t.logo}" alt="${t.name}" onerror="this.parentNode.textContent='${getInitials(t.name)}'">` : getInitials(t.name);
+        return `
+          <div class="compare-team-row ${winnerClass}">
+            <div class="compare-logo">${logoHtml}</div>
+            <div class="compare-info"><div class="compare-name">${t.name}</div></div>
+            <div class="compare-pct">${t.pct}%</div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('compareRows').innerHTML = rows +
+        `<div style="text-align:center;font-size:11px;color:#a1a1aa;margin-top:10px;">Draw: ${drawPct}%</div>`;
+
+      document.getElementById('compareResult').classList.add('show');
+    });
+
+    // MODE SWITCH
+    function switchMode(mode) {
+      if (mode === 'duel') {
+        document.getElementById('modeDuel').style.display = 'block';
+        document.getElementById('modeCompare').style.display = 'none';
+        document.getElementById('tabDuel').classList.add('active');
+        document.getElementById('tabCompare').classList.remove('active');
+      } else {
+        document.getElementById('modeDuel').style.display = 'none';
+        document.getElementById('modeCompare').style.display = 'block';
+        document.getElementById('tabDuel').classList.remove('active');
+        document.getElementById('tabCompare').classList.add('active');
       }
     }
+
+    // HISTORY
+    function loadHistory() {
+      try {
+        const h = JSON.parse(localStorage.getItem('skorduel_history') || '[]');
+        renderHistory(h);
+      } catch(e) {}
+    }
+    function saveHistory(item) {
+      try {
+        let h = JSON.parse(localStorage.getItem('skorduel_history') || '[]');
+        h.unshift({ ...item, time: Date.now() });
+        h = h.slice(0, 10);
+        localStorage.setItem('skorduel_history', JSON.stringify(h));
+        renderHistory(h);
+      } catch(e) {}
+    }
+    function renderHistory(h) {
+      const el = document.getElementById('historyList');
+      if (!h.length) { el.innerHTML = '<div class="history-empty">Belum ada history</div>'; return; }
+      el.innerHTML = h.map(i => `
+        <div class="history-item">
+          <span class="hi-match">${i.match}</span>
+          <span class="hi-winner">${i.winner}</span>
+        </div>
+      `).join('');
+    }
+    function clearHistory() {
+      localStorage.removeItem('skorduel_history');
+      renderHistory([]);
+    }
+
+    // SHARE
+    function shareTo(platform) {
+      if (!lastResult.timA) { alert('Prediksi dulu bre sebelum share!'); return; }
+      const { timA, timB, pctA, pctB, pctDraw, winner } = lastResult;
+      const text = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek prediksi tim favoritmu di:\nhttps://skorduel.pages.dev`;
+
+      if (platform === 'wa') window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      else if (platform === 'tw') { const t = `⚽ ${timA} vs ${timB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nskorduel.pages.dev`; window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}`, '_blank'); }
+      else if (platform === 'copy') { navigator.clipboard.writeText(text).then(() => alert('✅ Di-copy!')).catch(() => alert('❌ Gagal copy')); }
+      else if (platform === 'link') { navigator.clipboard.writeText('https://skorduel.pages.dev').then(() => alert('✅ Link SkorDuel di-copy!')).catch(() => alert('❌ Gagal copy')); }
+    }
+
+    // MODAL
+    const modalData = {
+      howto: `
+        <h2>❓ Cara Kerja SkorDuel</h2>
+        <p>SkorDuel menggunakan <strong>model statistik sederhana</strong> berbasis performa tim untuk memprediksi peluang menang.</p>
+        <h3>📊 Sumber Data</h3>
+        <ul>
+          <li><strong>Liga top Eropa</strong> (PL, La Liga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Championship): data live dari Football-Data.org</li>
+          <li><strong>Liga lainnya</strong>: data manual berdasarkan peringkat terkini</li>
+        </ul>
+        <h3>🧮 Rumus Prediksi</h3>
+        <ul>
+          <li>Skor kekuatan = (poin/pertandingan ÷ poin maks) × 45 + 50</li>
+          <li>Peluang menang = (skor tim ÷ total skor) × 85%</li>
+          <li>Draw = 15% (bobot tetap)</li>
+        </ul>
+        <h3>⚠️ Disclaimer</h3>
+        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Faktor tak terduga (cedera, cuaca, mental) tidak dihitung. Gunakan sebagai referensi, bukan patokan mutlak.</p>
+        <button class="modal-close" onclick="closeModal()">Mengerti</button>
+      `,
+      about: `
+        <h2>ℹ️ Tentang SkorDuel</h2>
+        <p>SkorDuel adalah <strong>alat prediksi pertandingan sepak bola</strong> sederhana yang menggabungkan data live dengan analisis statistik.</p>
+        <h3>🎯 Tujuan</h3>
+        <p>Memberikan gambaran cepat peluang menang antar tim, tanpa perlu hitung manual.</p>
+        <h3>🛠️ Teknologi</h3>
+        <ul>
+          <li>Cloudflare Pages (hosting)</li>
+          <li>Cloudflare Workers (API proxy)</li>
+          <li>Football-Data.org (data klasemen)</li>
+          <li>HTML/CSS/JavaScript murni (tanpa framework)</li>
+        </ul>
+        <h3>📅 Versi</h3>
+        <p>v2.0 — 2025</p>
+        <button class="modal-close" onclick="closeModal()">Tutup</button>
+      `
+    };
+
+    function openModal(type) {
+      document.getElementById('modalContent').innerHTML = modalData[type] || '';
+      document.getElementById('modalOverlay').classList.add('show');
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('show');
+    }
+
+    // INIT
+    loadHistory();
   </script>
 </body>
 </html>
