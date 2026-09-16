@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkorDuel — Prediksi Tim A vs Tim B</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,221 +14,248 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.18), transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(168, 132, 42, 0.12), transparent 50%),
-        linear-gradient(rgba(10, 10, 15, 0.88), rgba(10, 10, 15, 0.96)),
-        url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1920&q=80') center/cover no-repeat fixed;
-      display: flex; align-items: center; justify-content: center; padding: 20px; color: #f5f5f5;
-      user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08), transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(5, 150, 105, 0.06), transparent 45%),
+        linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #f8fafc 100%);
+      background-attachment: fixed;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      color: #0f172a; position: relative; overflow-x: hidden;
+      user-select: none; -webkit-user-select: none; -moz-user-select: none;
+    }
+
+    /* ⚽ BOLA BERTERBANGAN */
+    .balls-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .ball {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.12;
+      animation: floatBall linear infinite;
+      filter: blur(0.3px);
+    }
+    @keyframes floatBall {
+      0%   { transform: translateY(0) rotate(0deg) translateX(0); }
+      25%  { transform: translateY(-30px) rotate(90deg) translateX(15px); }
+      50%  { transform: translateY(-60px) rotate(180deg) translateX(0); }
+      75%  { transform: translateY(-30px) rotate(270deg) translateX(-15px); }
+      100% { transform: translateY(0) rotate(360deg) translateX(0); }
     }
 
     .container {
-      width: 100%; max-width: 500px;
-      background: linear-gradient(145deg, rgba(25, 25, 38, 0.85), rgba(12, 12, 20, 0.92));
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px;
+      width: 100%; max-width: 500px; position: relative; z-index: 1;
+      background: #ffffff;
+      border: 1px solid rgba(5, 150, 105, 0.15);
+      border-radius: 20px;
       padding: 32px 28px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(212, 175, 55, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      position: relative;
-    }
-
-    .container::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 100px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); border-radius: 2px;
+      box-shadow:
+        0 20px 60px rgba(5, 150, 105, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .header-top button {
-      background: transparent; border: 1px solid rgba(212, 175, 55, 0.3);
-      color: #d4af37; font-size: 11px; padding: 6px 12px; border-radius: 8px;
+      background: transparent; border: 1px solid rgba(5, 150, 105, 0.25);
+      color: #059669; font-size: 11px; padding: 6px 12px; border-radius: 8px;
       cursor: pointer; font-weight: 600; letter-spacing: 0.5px; transition: all 0.2s;
     }
-    .header-top button:hover { background: rgba(212, 175, 55, 0.1); border-color: #d4af37; }
+    .header-top button:hover { background: rgba(5, 150, 105, 0.08); border-color: #059669; }
 
     .logo { text-align: center; margin-bottom: 20px; }
-    .logo .crown { font-size: 38px; margin-bottom: 6px; filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.6)); }
+    .logo .crown { font-size: 38px; margin-bottom: 6px; }
     .logo h1 {
       font-size: 34px; font-weight: 800; letter-spacing: 1px;
-      background: linear-gradient(180deg, #f5e6a8 0%, #d4af37 50%, #a8842a 100%);
+      background: linear-gradient(180deg, #34d399 0%, #059669 50%, #047857 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .logo p { font-size: 11px; color: #a1a1aa; margin-top: 8px; letter-spacing: 3px; text-transform: uppercase; }
+    .logo p { font-size: 11px; color: #64748b; margin-top: 8px; letter-spacing: 3px; text-transform: uppercase; }
 
     .mode-tabs {
       display: flex; gap: 6px; margin-bottom: 18px;
-      background: rgba(0, 0, 0, 0.4); padding: 4px; border-radius: 10px;
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      background: #f1f5f9; padding: 4px; border-radius: 10px;
+      border: 1px solid rgba(5, 150, 105, 0.1);
     }
     .mode-tabs button {
       flex: 1; padding: 9px 6px; background: transparent; border: none;
-      color: #a1a1aa; font-size: 11px; font-weight: 600; cursor: pointer;
+      color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer;
       border-radius: 7px; transition: all 0.2s; letter-spacing: 0.5px; text-transform: uppercase;
     }
     .mode-tabs button.active {
-      background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
-      color: #0a0a0f; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
     }
 
     label {
-      display: block; font-size: 11px; font-weight: 600; color: #a1a1aa;
+      display: block; font-size: 11px; font-weight: 600; color: #475569;
       margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;
     }
 
     select {
-      width: 100%; padding: 14px 16px; background: rgba(10, 10, 15, 0.75);
-      border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 10px; color: #f5f5f5;
+      width: 100%; padding: 14px 16px; background: #ffffff;
+      border: 1.5px solid #d1fae5; border-radius: 10px; color: #0f172a;
       font-size: 14px; cursor: pointer; outline: none; transition: all 0.25s ease;
       margin-bottom: 16px; appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 16px center; font-weight: 500;
     }
-    select:focus { border-color: #d4af37; background-color: rgba(212, 175, 55, 0.08); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12); }
-    select option { background: #13131a; color: #f5f5f5; }
+    select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+    select option { background: #ffffff; color: #0f172a; }
 
     .vs-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
     .vs-row select { margin-bottom: 0; flex: 1; min-width: 0; }
-    .vs-badge { font-size: 11px; font-weight: 800; color: #d4af37; padding: 0 4px; letter-spacing: 1px; }
+    .vs-badge {
+      font-size: 11px; font-weight: 800; color: #059669;
+      padding: 0 6px; letter-spacing: 1px;
+      background: #d1fae5; border-radius: 6px; padding: 4px 6px;
+    }
 
     .logo-preview {
       display: flex; align-items: center; justify-content: space-around; gap: 12px;
-      margin-top: 16px; padding: 16px 12px; background: rgba(0, 0, 0, 0.4);
-      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.15);
+      margin-top: 16px; padding: 16px 12px; background: #f0fdf4;
+      border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.15);
     }
     .logo-box { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; min-width: 0; }
     .logo-circle {
       width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(145deg, #2a2a3e, #15151f);
-      border: 2px solid rgba(212, 175, 55, 0.4);
+      background: #ffffff; border: 2px solid rgba(16, 185, 129, 0.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 800; color: #d4af37;
+      font-size: 20px; font-weight: 800; color: #059669;
       overflow: hidden; transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
     }
     .logo-circle img { width: 85%; height: 85%; object-fit: contain; }
-    .logo-circle:hover { transform: scale(1.08); border-color: #d4af37; box-shadow: 0 0 24px rgba(212, 175, 55, 0.5); }
-    .logo-name { font-size: 10px; color: #a1a1aa; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .logo-circle:hover { transform: scale(1.08); border-color: #10b981; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25); }
+    .logo-name { font-size: 10px; color: #64748b; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
     #btnPrediksi, #btnCompare {
-      width: 100%; padding: 16px; background: linear-gradient(135deg, #d4af37 0%, #a8842a 100%);
-      border: none; border-radius: 10px; color: #0a0a0f; font-size: 15px; font-weight: 700;
+      width: 100%; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border: none; border-radius: 10px; color: #ffffff; font-size: 15px; font-weight: 700;
       cursor: pointer; transition: all 0.25s ease; margin-top: 16px;
       letter-spacing: 1px; text-transform: uppercase;
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 24px rgba(5, 150, 105, 0.25);
     }
-    #btnPrediksi:hover, #btnCompare:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(212, 175, 55, 0.5); filter: brightness(1.05); }
+    #btnPrediksi:hover, #btnCompare:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(5, 150, 105, 0.4); filter: brightness(1.05); }
+    #btnPrediksi:active, #btnCompare:active { transform: translateY(0); }
 
     .result {
-      margin-top: 20px; padding: 20px; background: rgba(0, 0, 0, 0.5);
-      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.2); display: none;
+      margin-top: 20px; padding: 20px; background: #f0fdf4;
+      border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.2); display: none;
     }
     .result.show { display: block; animation: fadeIn 0.5s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .result-title { text-align: center; font-size: 13px; color: #a1a1aa; margin-bottom: 16px; }
-    .result-title strong { color: #f5f5f5; font-size: 14px; }
+    .result-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 16px; }
+    .result-title strong { color: #0f172a; font-size: 14px; font-weight: 700; }
 
     .bar-item { margin-bottom: 14px; }
-    .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #d4d4d8; }
-    .bar-track { height: 8px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #334155; font-weight: 500; }
+    .bar-track { height: 8px; background: #d1fae5; border-radius: 10px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 10px; transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1); width: 0; }
-    .bar-a { background: linear-gradient(90deg, #d4af37, #f5e6a8); box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); }
-    .bar-draw { background: linear-gradient(90deg, #52525b, #a1a1aa); }
-    .bar-b { background: linear-gradient(90deg, #a8842a, #d4af37); }
+    .bar-a { background: linear-gradient(90deg, #10b981, #34d399); }
+    .bar-draw { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
+    .bar-b { background: linear-gradient(90deg, #059669, #10b981); }
 
     .winner {
       text-align: center; margin-top: 18px; padding-top: 16px;
-      border-top: 1px solid rgba(212, 175, 55, 0.2); font-size: 13px; color: #a1a1aa;
+      border-top: 1px solid rgba(16, 185, 129, 0.2); font-size: 13px; color: #64748b;
     }
-    .winner strong { color: #d4af37; font-size: 15px; font-weight: 700; }
+    .winner strong { color: #059669; font-size: 15px; font-weight: 700; }
 
-    .share-row { display: flex; gap: 6px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(212, 175, 55, 0.15); }
+    .share-row { display: flex; gap: 6px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(16, 185, 129, 0.2); }
     .share-btn {
-      flex: 1; padding: 10px 4px; background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px;
-      color: #d4d4d8; font-size: 10px; font-weight: 600; cursor: pointer;
+      flex: 1; padding: 10px 4px; background: #ffffff;
+      border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px;
+      color: #475569; font-size: 10px; font-weight: 600; cursor: pointer;
       transition: all 0.2s;
     }
-    .share-btn:hover { background: rgba(212, 175, 55, 0.15); border-color: #d4af37; color: #d4af37; transform: translateY(-1px); }
+    .share-btn:hover { background: #f0fdf4; border-color: #10b981; color: #059669; transform: translateY(-1px); }
     .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
     .share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
 
-    .loading { text-align: center; font-size: 12px; color: #71717a; margin-top: 10px; display: none; }
+    .loading { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 10px; display: none; }
     .loading.show { display: block; }
-    .api-badge { text-align: center; font-size: 10px; color: #52525b; margin-top: 8px; letter-spacing: 1px; }
-    .api-badge.live { color: #22c55e; }
-    .api-badge.manual { color: #f59e0b; }
+    .api-badge { text-align: center; font-size: 10px; color: #94a3b8; margin-top: 8px; letter-spacing: 1px; }
+    .api-badge.live { color: #059669; }
+    .api-badge.manual { color: #d97706; }
 
-    .history-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(212, 175, 55, 0.15); }
+    .history-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(16, 185, 129, 0.2); }
     .history-title {
-      font-size: 11px; color: #a1a1aa; text-transform: uppercase;
+      font-size: 11px; color: #475569; text-transform: uppercase;
       letter-spacing: 1.5px; margin-bottom: 10px; display: flex;
-      justify-content: space-between; align-items: center;
+      justify-content: space-between; align-items: center; font-weight: 600;
     }
     .history-title button {
       background: transparent; border: 1px solid rgba(220, 38, 38, 0.3);
-      color: #ef4444; font-size: 9px; padding: 3px 8px; border-radius: 6px;
+      color: #dc2626; font-size: 9px; padding: 3px 8px; border-radius: 6px;
       cursor: pointer; font-weight: 600;
     }
+    .history-title button:hover { background: rgba(220, 38, 38, 0.08); }
     .history-list { max-height: 140px; overflow-y: auto; }
     .history-list::-webkit-scrollbar { width: 4px; }
-    .history-list::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.3); border-radius: 2px; }
+    .history-list::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.3); border-radius: 2px; }
     .history-item {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 10px; background: rgba(0, 0, 0, 0.3);
+      padding: 8px 10px; background: #ffffff;
       border-radius: 8px; margin-bottom: 6px; font-size: 11px;
-      border: 1px solid rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.15);
     }
-    .history-item .hi-match { color: #d4d4d8; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .history-item .hi-winner { color: #d4af37; font-weight: 700; font-size: 10px; }
-    .history-empty { text-align: center; font-size: 11px; color: #52525b; padding: 10px; }
+    .history-item .hi-match { color: #334155; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .history-item .hi-winner { color: #059669; font-weight: 700; font-size: 10px; }
+    .history-empty { text-align: center; font-size: 11px; color: #94a3b8; padding: 10px; }
 
     .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
     .compare-grid select { margin-bottom: 0; font-size: 12px; padding: 12px 14px; }
     .compare-result {
-      margin-top: 16px; padding: 16px; background: rgba(0, 0, 0, 0.5);
-      border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.2); display: none;
+      margin-top: 16px; padding: 16px; background: #f0fdf4;
+      border-radius: 14px; border: 1px solid rgba(16, 185, 129, 0.2); display: none;
     }
     .compare-result.show { display: block; animation: fadeIn 0.4s ease; }
-    .compare-result h3 { font-size: 12px; color: #d4af37; text-align: center; margin-bottom: 14px; letter-spacing: 1px; text-transform: uppercase; }
+    .compare-result h3 { font-size: 12px; color: #059669; text-align: center; margin-bottom: 14px; letter-spacing: 1px; text-transform: uppercase; }
     .compare-team-row {
       display: flex; align-items: center; gap: 10px; padding: 10px;
-      background: rgba(0, 0, 0, 0.3); border-radius: 10px; margin-bottom: 8px;
-      border: 1px solid rgba(212, 175, 55, 0.1);
+      background: #ffffff; border-radius: 10px; margin-bottom: 8px;
+      border: 1px solid rgba(16, 185, 129, 0.15);
     }
-    .compare-team-row.winner-row { border-color: #d4af37; background: rgba(212, 175, 55, 0.08); }
+    .compare-team-row.winner-row {
+      border-color: #10b981; background: #ecfdf5;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+    }
     .compare-logo {
       width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);
+      background: #ffffff; border: 1px solid rgba(16, 185, 129, 0.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; color: #d4af37; overflow: hidden; flex-shrink: 0;
+      font-size: 12px; font-weight: 800; color: #059669; overflow: hidden; flex-shrink: 0;
     }
     .compare-logo img { width: 85%; height: 85%; object-fit: contain; }
     .compare-info { flex: 1; min-width: 0; }
-    .compare-name { font-size: 12px; color: #f5f5f5; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .compare-pct { font-size: 16px; color: #d4af37; font-weight: 800; }
+    .compare-name { font-size: 12px; color: #0f172a; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .compare-pct { font-size: 16px; color: #059669; font-weight: 800; }
 
-    .watermark { text-align: center; font-size: 10px; color: #52525b; margin-top: 18px; letter-spacing: 1px; }
+    .watermark { text-align: center; font-size: 10px; color: #94a3b8; margin-top: 18px; letter-spacing: 1px; }
 
     .modal-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
       z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
     .modal-content {
-      background: linear-gradient(145deg, rgba(30, 30, 45, 0.98), rgba(15, 15, 25, 0.98));
-      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px;
-      padding: 26px 22px; max-width: 420px; width: 100%;
+      background: #ffffff; border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 18px; padding: 26px 22px; max-width: 420px; width: 100%;
       max-height: 80vh; overflow-y: auto;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
     }
-    .modal-content h2 { font-size: 20px; color: #d4af37; margin-bottom: 16px; text-align: center; }
-    .modal-content h3 { font-size: 13px; color: #d4af37; margin-top: 14px; margin-bottom: 8px; }
-    .modal-content p, .modal-content li { font-size: 12px; color: #d4d4d8; line-height: 1.7; margin-bottom: 6px; }
+    .modal-content h2 { font-size: 20px; color: #059669; margin-bottom: 16px; text-align: center; }
+    .modal-content h3 { font-size: 13px; color: #059669; margin-top: 14px; margin-bottom: 8px; }
+    .modal-content p, .modal-content li { font-size: 12px; color: #334155; line-height: 1.7; margin-bottom: 6px; }
     .modal-content ul { padding-left: 20px; }
     .modal-content li { list-style: disc; }
     .modal-close {
-      width: 100%; padding: 12px; background: linear-gradient(135deg, #d4af37, #a8842a);
-      border: none; border-radius: 10px; color: #0a0a0f;
+      width: 100%; padding: 12px; background: linear-gradient(135deg, #10b981, #059669);
+      border: none; border-radius: 10px; color: #ffffff;
       font-weight: 700; font-size: 13px; cursor: pointer;
       margin-top: 16px; letter-spacing: 1px; text-transform: uppercase;
     }
@@ -236,6 +263,9 @@
   </style>
 </head>
 <body>
+  <!-- ⚽ BOLA BERTERBANGAN -->
+  <div class="balls-container" id="ballsContainer"></div>
+
   <div class="container">
     <div class="header-top">
       <button onclick="openModal('howto')">❓ Cara Kerja</button>
@@ -243,7 +273,7 @@
     </div>
 
     <div class="logo">
-      <div class="crown">👑</div>
+      <div class="crown">⚽</div>
       <h1>SkorDuel</h1>
       <p>Prediksi Tim A vs Tim B</p>
     </div>
@@ -355,7 +385,6 @@
       </div>
     </div>
 
-    <!-- HISTORY -->
     <div class="history-section">
       <div class="history-title">
         <span>📜 History Prediksi</span>
@@ -386,6 +415,25 @@
       }
     });
     console.log = console.warn = console.error = () => {};
+
+    // ⚽ GENERATE BOLA BERTERBANGAN
+    (function createBalls() {
+      const container = document.getElementById('ballsContainer');
+      const ballCount = 14;
+      const emojis = ['⚽', '⚽', '⚽', '🏆', '⚽'];
+      for (let i = 0; i < ballCount; i++) {
+        const ball = document.createElement('div');
+        ball.className = 'ball';
+        ball.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        ball.style.left = Math.random() * 100 + '%';
+        ball.style.top = Math.random() * 100 + '%';
+        ball.style.fontSize = (16 + Math.random() * 24) + 'px';
+        ball.style.opacity = (0.06 + Math.random() * 0.1).toFixed(2);
+        ball.style.animationDuration = (12 + Math.random() * 15) + 's';
+        ball.style.animationDelay = (Math.random() * -20) + 's';
+        container.appendChild(ball);
+      }
+    })();
 
     const API_URL = 'https://skorduel-api.rehantobing31.workers.dev';
 
@@ -544,7 +592,6 @@
       saveHistory({ match: `${timA} vs ${timB}`, winner: winnerText.replace(/<[^>]*>/g, '').replace('🏆 Unggulan: ','').replace('🤝 Prediksi: ','') });
     });
 
-    // COMPARE MODE
     const ligaCompare = document.getElementById('ligaCompare');
     const cTim1 = document.getElementById('cTim1'), cTim2 = document.getElementById('cTim2'),
           cTim3 = document.getElementById('cTim3'), cTim4 = document.getElementById('cTim4');
@@ -552,15 +599,12 @@
     ligaCompare.addEventListener('change', async () => {
       const liga = ligaCompare.value;
       [cTim1, cTim2, cTim3, cTim4].forEach(s => s.innerHTML = '<option value="">Loading...</option>');
-
       if (!liga) {
         [cTim1, cTim2, cTim3, cTim4].forEach(s => s.innerHTML = '<option value="">-</option>');
         return;
       }
-
       const data = await fetchLiga(liga);
       const list = Object.keys(data);
-
       [cTim1, cTim2, cTim3, cTim4].forEach((s, i) => {
         s.innerHTML = `<option value="">Tim ${i+1}${i===3?' (opsional)':''}</option>`;
         list.forEach(t => { s.innerHTML += `<option value="${t}">${t}</option>`; });
@@ -570,12 +614,10 @@
     document.getElementById('btnCompare').addEventListener('click', () => {
       const liga = ligaCompare.value;
       const tims = [cTim1.value, cTim2.value, cTim3.value, cTim4.value].filter(Boolean);
-
       if (tims.length < 3) { alert('Pilih minimal 3 tim bre!'); return; }
 
       const data = apiCache[liga] || {};
       const fb = teamsDataFallback[liga] || {};
-
       const teams = tims.map(t => {
         const strength = data[t]?.strength || fb[t] || 75;
         const logo = data[t]?.logo || null;
@@ -590,22 +632,18 @@
       const rows = teams.map((t, i) => {
         const winnerClass = i === 0 ? 'winner-row' : '';
         const logoHtml = t.logo ? `<img src="${t.logo}" alt="${t.name}" onerror="this.parentNode.textContent='${getInitials(t.name)}'">` : getInitials(t.name);
-        return `
-          <div class="compare-team-row ${winnerClass}">
-            <div class="compare-logo">${logoHtml}</div>
-            <div class="compare-info"><div class="compare-name">${t.name}</div></div>
-            <div class="compare-pct">${t.pct}%</div>
-          </div>
-        `;
+        return `<div class="compare-team-row ${winnerClass}">
+          <div class="compare-logo">${logoHtml}</div>
+          <div class="compare-info"><div class="compare-name">${t.name}</div></div>
+          <div class="compare-pct">${t.pct}%</div>
+        </div>`;
       }).join('');
 
       document.getElementById('compareRows').innerHTML = rows +
-        `<div style="text-align:center;font-size:11px;color:#a1a1aa;margin-top:10px;">Draw: ${drawPct}%</div>`;
-
+        `<div style="text-align:center;font-size:11px;color:#64748b;margin-top:10px;">Draw: ${drawPct}%</div>`;
       document.getElementById('compareResult').classList.add('show');
     });
 
-    // MODE SWITCH
     function switchMode(mode) {
       if (mode === 'duel') {
         document.getElementById('modeDuel').style.display = 'block';
@@ -620,12 +658,8 @@
       }
     }
 
-    // HISTORY
     function loadHistory() {
-      try {
-        const h = JSON.parse(localStorage.getItem('skorduel_history') || '[]');
-        renderHistory(h);
-      } catch(e) {}
+      try { renderHistory(JSON.parse(localStorage.getItem('skorduel_history') || '[]')); } catch(e) {}
     }
     function saveHistory(item) {
       try {
@@ -639,19 +673,16 @@
     function renderHistory(h) {
       const el = document.getElementById('historyList');
       if (!h.length) { el.innerHTML = '<div class="history-empty">Belum ada history</div>'; return; }
-      el.innerHTML = h.map(i => `
-        <div class="history-item">
-          <span class="hi-match">${i.match}</span>
-          <span class="hi-winner">${i.winner}</span>
-        </div>
-      `).join('');
+      el.innerHTML = h.map(i => `<div class="history-item">
+        <span class="hi-match">${i.match}</span>
+        <span class="hi-winner">${i.winner}</span>
+      </div>`).join('');
     }
     function clearHistory() {
       localStorage.removeItem('skorduel_history');
       renderHistory([]);
     }
 
-    // SHARE
     function shareTo(platform) {
       if (!lastResult.timA) { alert('Prediksi dulu bre sebelum share!'); return; }
       const { timA, timB, pctA, pctB, pctDraw, winner } = lastResult;
@@ -663,10 +694,8 @@
       else if (platform === 'link') { navigator.clipboard.writeText('https://skorduel.pages.dev').then(() => alert('✅ Link SkorDuel di-copy!')).catch(() => alert('❌ Gagal copy')); }
     }
 
-    // MODAL
     const modalData = {
-      howto: `
-        <h2>❓ Cara Kerja SkorDuel</h2>
+      howto: `<h2>❓ Cara Kerja SkorDuel</h2>
         <p>SkorDuel menggunakan <strong>model statistik sederhana</strong> berbasis performa tim untuk memprediksi peluang menang.</p>
         <h3>📊 Sumber Data</h3>
         <ul>
@@ -680,11 +709,9 @@
           <li>Draw = 15% (bobot tetap)</li>
         </ul>
         <h3>⚠️ Disclaimer</h3>
-        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Faktor tak terduga (cedera, cuaca, mental) tidak dihitung. Gunakan sebagai referensi, bukan patokan mutlak.</p>
-        <button class="modal-close" onclick="closeModal()">Mengerti</button>
-      `,
-      about: `
-        <h2>ℹ️ Tentang SkorDuel</h2>
+        <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Gunakan sebagai referensi, bukan patokan mutlak.</p>
+        <button class="modal-close" onclick="closeModal()">Mengerti</button>`,
+      about: `<h2>ℹ️ Tentang SkorDuel</h2>
         <p>SkorDuel adalah <strong>alat prediksi pertandingan sepak bola</strong> sederhana yang menggabungkan data live dengan analisis statistik.</p>
         <h3>🎯 Tujuan</h3>
         <p>Memberikan gambaran cepat peluang menang antar tim, tanpa perlu hitung manual.</p>
@@ -693,12 +720,11 @@
           <li>Cloudflare Pages (hosting)</li>
           <li>Cloudflare Workers (API proxy)</li>
           <li>Football-Data.org (data klasemen)</li>
-          <li>HTML/CSS/JavaScript murni (tanpa framework)</li>
+          <li>HTML/CSS/JavaScript murni</li>
         </ul>
         <h3>📅 Versi</h3>
-        <p>v2.0 — 2025</p>
-        <button class="modal-close" onclick="closeModal()">Tutup</button>
-      `
+        <p>v3.0 — 2025 (tema hijau mint + bola animasi)</p>
+        <button class="modal-close" onclick="closeModal()">Tutup</button>`
     };
 
     function openModal(type) {
@@ -709,7 +735,6 @@
       document.getElementById('modalOverlay').classList.remove('show');
     }
 
-    // INIT
     loadHistory();
   </script>
 </body>
