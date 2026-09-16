@@ -135,7 +135,7 @@
     .result-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 14px; }
     .result-title strong { color: #0f172a; font-size: 14px; font-weight: 700; }
 
-    /* SCORE PREDICTION BOX */
+    /* SCORE PREDICTION */
     .score-prediction {
       display: flex; align-items: center; justify-content: center; gap: 16px;
       margin: 14px 0 18px; padding: 16px 12px;
@@ -145,18 +145,74 @@
     }
     .score-team { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; min-width: 0; }
     .score-team-name { font-size: 10px; color: #64748b; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; letter-spacing: 0.3px; }
-    .score-num {
-      font-size: 32px; font-weight: 800; color: #059669;
-      line-height: 1; letter-spacing: -1px;
+    .score-num { font-size: 32px; font-weight: 800; color: #059669; line-height: 1; letter-spacing: -1px; }
+    .score-divider { font-size: 20px; color: #94a3b8; font-weight: 300; padding: 0 4px; }
+    .score-label { text-align: center; font-size: 10px; color: #94a3b8; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+
+    /* 🏆 TIM UNGGULAN BESAR */
+    .winner-team {
+      text-align: center;
+      margin: 20px 0 16px;
+      padding: 20px 16px;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 16px;
+      border: 2px solid #10b981;
+      box-shadow: 0 8px 28px rgba(5, 150, 105, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: winnerPulse 2s ease-in-out infinite;
     }
-    .score-divider {
-      font-size: 20px; color: #94a3b8; font-weight: 300;
-      padding: 0 4px;
+    @keyframes winnerPulse {
+      0%, 100% { box-shadow: 0 8px 28px rgba(5, 150, 105, 0.2); }
+      50%      { box-shadow: 0 12px 40px rgba(5, 150, 105, 0.35); }
     }
-    .score-label {
-      text-align: center; font-size: 10px; color: #94a3b8;
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+    .winner-team::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #10b981, transparent);
+      animation: shineLine 3s linear infinite;
     }
+    @keyframes shineLine {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .winner-crown { font-size: 28px; margin-bottom: 6px; animation: crownBounce 1.5s ease-in-out infinite; }
+    @keyframes crownBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .winner-label { font-size: 10px; color: #059669; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+    .winner-name {
+      font-size: 22px; font-weight: 800; color: #064e3b;
+      letter-spacing: 0.5px; line-height: 1.2; margin-bottom: 8px;
+      background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .winner-pct-big { display: inline-block; font-size: 28px; font-weight: 800; color: #059669; letter-spacing: -0.5px; }
+    .winner-pct-big span { font-size: 14px; color: #64748b; font-weight: 600; margin-left: 4px; }
+    .winner-logo {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #ffffff; border: 3px solid #10b981;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
+      overflow: hidden;
+      font-size: 20px; font-weight: 800; color: #059669;
+    }
+    .winner-logo img { width: 85%; height: 85%; object-fit: contain; }
+    .winner-draw {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      border-color: #94a3b8;
+    }
+    .winner-draw .winner-name {
+      background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .winner-draw .winner-label { color: #475569; }
+    .winner-draw .winner-pct-big { color: #475569; }
+    .winner-draw::before { background: linear-gradient(90deg, transparent, #94a3b8, transparent); }
 
     .bar-item { margin-bottom: 14px; }
     .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: #334155; font-weight: 500; }
@@ -166,21 +222,48 @@
     .bar-draw { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
     .bar-b { background: linear-gradient(90deg, #059669, #10b981); }
 
-    .winner {
-      text-align: center; margin-top: 18px; padding-top: 16px;
-      border-top: 1px solid rgba(16, 185, 129, 0.2); font-size: 13px; color: #64748b;
+    /* 📤 TOMBOL SHARE UTAMA */
+    .share-main-btn {
+      width: 100%; padding: 14px; margin-top: 14px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border: none; border-radius: 10px; color: #ffffff;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      letter-spacing: 0.5px; transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
     }
-    .winner strong { color: #059669; font-size: 15px; font-weight: 700; }
+    .share-main-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(5, 150, 105, 0.4);
+      filter: brightness(1.05);
+    }
 
-    .share-row { display: flex; gap: 6px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(16, 185, 129, 0.2); }
-    .share-btn {
-      flex: 1; padding: 10px 4px; background: #ffffff;
-      border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px;
-      color: #475569; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    /* Share modal grid */
+    .share-modal-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-top: 8px;
     }
-    .share-btn:hover { background: #f0fdf4; border-color: #10b981; color: #059669; transform: translateY(-1px); }
-    .share-btn.wa:hover { color: #25d366; border-color: #25d366; }
-    .share-btn.tw:hover { color: #1da1f2; border-color: #1da1f2; }
+    .share-modal-item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 16px 8px; background: #f8fafc;
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      cursor: pointer; transition: all 0.2s;
+      font-size: 11px; font-weight: 600; color: #334155;
+      text-align: center;
+    }
+    .share-modal-item:hover {
+      transform: translateY(-2px);
+      border-color: #10b981;
+      background: #f0fdf4;
+      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.15);
+    }
+    .share-modal-item .icon { font-size: 24px; line-height: 1; }
+    .share-modal-item.wa:hover { border-color: #25d366; color: #25d366; }
+    .share-modal-item.tg:hover { border-color: #229ed9; color: #229ed9; }
+    .share-modal-item.tw:hover { border-color: #000000; color: #000000; }
+    .share-modal-item.fb:hover { border-color: #1877f2; color: #1877f2; }
+    .share-modal-item.copy:hover { border-color: #10b981; color: #10b981; }
+    .share-modal-item.link:hover { border-color: #f59e0b; color: #f59e0b; }
+    .share-modal-item.native:hover { border-color: #8b5cf6; color: #8b5cf6; }
 
     .loading { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 10px; display: none; }
     .loading.show { display: block; }
@@ -354,13 +437,18 @@
           <div class="bar-label"><span id="labelB">Tim B</span><span id="pctB">0%</span></div>
           <div class="bar-track"><div class="bar-fill bar-b" id="fillB"></div></div>
         </div>
-        <div class="winner" id="winner"></div>
-        <div class="share-row">
-          <button class="share-btn wa" onclick="shareTo('wa')">📱 WA</button>
-          <button class="share-btn tw" onclick="shareTo('tw')">🐦 X</button>
-          <button class="share-btn copy" onclick="shareTo('copy')">🔗 Copy</button>
-          <button class="share-btn" onclick="shareTo('link')">📤 Link</button>
+
+        <!-- 🏆 TIM UNGGULAN BESAR -->
+        <div class="winner-team" id="winnerTeam" style="display:none;">
+          <div class="winner-crown" id="winnerCrown">🏆</div>
+          <div class="winner-logo" id="winnerLogo"></div>
+          <div class="winner-label" id="winnerLabel">Tim Unggulan</div>
+          <div class="winner-name" id="winnerName">-</div>
+          <div class="winner-pct-big" id="winnerPct">0<span>%</span></div>
         </div>
+
+        <!-- 📤 TOMBOL SHARE UTAMA -->
+        <button class="share-main-btn" onclick="openShareModal()">📤 Bagikan Hasil Prediksi</button>
       </div>
     </div>
 
@@ -553,22 +641,15 @@
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
-    // 🎯 HITUNG PREDIKSI SKOR
     function predictScore(skorA, skorB) {
-      // Basis: 2.7 gol rata-rata per pertandingan
       const total = skorA + skorB;
       const baseGoals = 2.7;
       const ratioA = skorA / total;
       const ratioB = skorB / total;
-
-      // Prediksi gol (dengan sedikit random biar natural)
       let golA = Math.round(baseGoals * ratioA + (Math.random() * 0.6 - 0.3));
       let golB = Math.round(baseGoals * ratioB + (Math.random() * 0.6 - 0.3));
-
-      // Clamp 0-5
       golA = Math.max(0, Math.min(5, golA));
       golB = Math.max(0, Math.min(5, golB));
-
       return { golA, golB };
     }
 
@@ -592,7 +673,6 @@
       const pctB = Math.round((skorB / total) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
-      // Prediksi skor
       const { golA, golB } = predictScore(skorA, skorB);
 
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
@@ -602,7 +682,6 @@
       document.getElementById('pctDraw').textContent = pctDraw + '%';
       document.getElementById('pctB').textContent = pctB + '%';
 
-      // Update skor prediksi
       document.getElementById('scoreA').textContent = golA;
       document.getElementById('scoreB').textContent = golB;
       document.getElementById('scoreNameA').textContent = timA;
@@ -619,13 +698,55 @@
         document.getElementById('fillB').style.width = pctB + '%';
       }, 100);
 
+      // 🏆 TENTUKAN UNGGULAN
       let winnerText = '';
-      if (pctA > pctB && pctA > pctDraw) winnerText = `🏆 Unggulan: <strong>${timA}</strong>`;
-      else if (pctB > pctA && pctB > pctDraw) winnerText = `🏆 Unggulan: <strong>${timB}</strong>`;
-      else winnerText = `🤝 Prediksi: <strong>Draw</strong>`;
-      document.getElementById('winner').innerHTML = winnerText;
+      let winnerTeamName = '';
+      let winnerPct = 0;
+      let winnerLogoUrl = '';
+      let isDraw = false;
 
-      lastResult = { timA, timB, pctA, pctB, pctDraw, golA, golB, winner: winnerText.replace(/<[^>]*>/g, '') };
+      const dataTim = apiCache[liga] || {};
+
+      if (pctA > pctB && pctA > pctDraw) {
+        winnerTeamName = timA; winnerPct = pctA; winnerText = `🏆 Unggulan: ${timA}`;
+        winnerLogoUrl = dataTim[timA]?.logo || '';
+      } else if (pctB > pctA && pctB > pctDraw) {
+        winnerTeamName = timB; winnerPct = pctB; winnerText = `🏆 Unggulan: ${timB}`;
+        winnerLogoUrl = dataTim[timB]?.logo || '';
+      } else {
+        isDraw = true; winnerTeamName = 'Draw'; winnerPct = pctDraw;
+        winnerText = `🤝 Prediksi: Draw`;
+      }
+
+      const winnerBox = document.getElementById('winnerTeam');
+      const winnerLogoEl = document.getElementById('winnerLogo');
+      const winnerNameEl = document.getElementById('winnerName');
+      const winnerPctEl = document.getElementById('winnerPct');
+      const winnerCrownEl = document.getElementById('winnerCrown');
+      const winnerLabelEl = document.getElementById('winnerLabel');
+
+      winnerBox.style.display = 'block';
+      winnerBox.classList.toggle('winner-draw', isDraw);
+
+      if (isDraw) {
+        winnerCrownEl.textContent = '🤝';
+        winnerLabelEl.textContent = 'Prediksi Seri';
+        winnerLogoEl.innerHTML = '<span style="font-size:24px;">🤝</span>';
+        winnerNameEl.textContent = 'Draw';
+        winnerPctEl.innerHTML = `${winnerPct}<span>%</span>`;
+      } else {
+        winnerCrownEl.textContent = '🏆';
+        winnerLabelEl.textContent = 'Tim Unggulan';
+        if (winnerLogoUrl) {
+          winnerLogoEl.innerHTML = `<img src="${winnerLogoUrl}" alt="${winnerTeamName}" onerror="this.parentNode.textContent='${getInitials(winnerTeamName)}'">`;
+        } else {
+          winnerLogoEl.textContent = getInitials(winnerTeamName);
+        }
+        winnerNameEl.textContent = winnerTeamName;
+        winnerPctEl.innerHTML = `${winnerPct}<span>% peluang menang</span>`;
+      }
+
+      lastResult = { timA, timB, pctA, pctB, pctDraw, golA, golB, winner: winnerText };
       saveHistory({
         match: `${timA} vs ${timB}`,
         winner: `${golA}-${golB}`
@@ -723,15 +844,91 @@
       renderHistory([]);
     }
 
-    function shareTo(platform) {
-      if (!lastResult.timA) { alert('Prediksi dulu bre sebelum share!'); return; }
-      const { timA, timB, pctA, pctB, pctDraw, golA, golB, winner } = lastResult;
-      const text = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🎯 *Prediksi Skor: ${golA} - ${golB}*\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek prediksi tim favoritmu di:\nhttps://skorduel.pages.dev`;
+    // 📤 SHARE MODAL
+    function openShareModal() {
+      if (!lastResult.timA) {
+        alert('Prediksi dulu bre sebelum share!');
+        return;
+      }
 
-      if (platform === 'wa') window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-      else if (platform === 'tw') { const t = `⚽ ${timA} vs ${timB}\n🎯 Prediksi: ${golA}-${golB}\n\n${timA}: ${pctA}%\nDraw: ${pctDraw}%\n${timB}: ${pctB}%\n\nskorduel.pages.dev`; window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t)}`, '_blank'); }
-      else if (platform === 'copy') { navigator.clipboard.writeText(text).then(() => alert('✅ Di-copy!')).catch(() => alert('❌ Gagal copy')); }
-      else if (platform === 'link') { navigator.clipboard.writeText('https://skorduel.pages.dev').then(() => alert('✅ Link SkorDuel di-copy!')).catch(() => alert('❌ Gagal copy')); }
+      const { timA, timB, golA, golB, pctA, pctB, pctDraw, winner } = lastResult;
+      const shareText = `⚽ *SkorDuel* — Prediksi Pertandingan\n\n${timA} vs ${timB}\n\n🎯 *Prediksi Skor: ${golA} - ${golB}*\n\n🏆 ${timA}: ${pctA}%\n🤝 Draw: ${pctDraw}%\n🏆 ${timB}: ${pctB}%\n\n${winner}\n\n🔮 Cek prediksi tim favoritmu di:\nhttps://skorduel.pages.dev`;
+      const shareTextShort = `⚽ ${timA} vs ${timB}\n🎯 Prediksi: ${golA}-${golB}\n\nskorduel.pages.dev`;
+      const pageUrl = 'https://skorduel.pages.dev';
+
+      const modalHtml = `
+        <h2>📤 Bagikan Prediksi</h2>
+        <p style="text-align:center;margin-bottom:16px;font-size:12px;color:#64748b;">
+          ${timA} <strong style="color:#059669;">${golA} - ${golB}</strong> ${timB}
+        </p>
+        <div class="share-modal-grid">
+          <a class="share-modal-item wa" onclick="doShare('wa')">
+            <span class="icon">📱</span>WhatsApp
+          </a>
+          <a class="share-modal-item tg" onclick="doShare('tg')">
+            <span class="icon">✈️</span>Telegram
+          </a>
+          <a class="share-modal-item tw" onclick="doShare('tw')">
+            <span class="icon">🐦</span>Twitter / X
+          </a>
+          <a class="share-modal-item fb" onclick="doShare('fb')">
+            <span class="icon">📘</span>Facebook
+          </a>
+          <a class="share-modal-item copy" onclick="doShare('copy')">
+            <span class="icon">🔗</span>Copy Teks
+          </a>
+          <a class="share-modal-item link" onclick="doShare('link')">
+            <span class="icon">📋</span>Copy Link
+          </a>
+          <a class="share-modal-item native" onclick="doShare('native')" id="nativeShareBtn" style="grid-column: 1 / -1;">
+            <span class="icon">📲</span>Bagikan via Aplikasi Lain
+          </a>
+        </div>
+        <button class="modal-close" onclick="closeModal()" style="margin-top:16px;">Tutup</button>
+      `;
+
+      document.getElementById('modalContent').innerHTML = modalHtml;
+      document.getElementById('modalOverlay').classList.add('show');
+
+      if (!navigator.share) {
+        const nb = document.getElementById('nativeShareBtn');
+        if (nb) nb.style.display = 'none';
+      }
+
+      window._shareData = { shareText, shareTextShort, pageUrl };
+    }
+
+    function doShare(platform) {
+      const { shareText, shareTextShort, pageUrl } = window._shareData || {};
+      if (!shareText) return;
+
+      if (platform === 'wa') {
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+      } else if (platform === 'tg') {
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+      } else if (platform === 'tw') {
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextShort)}`, '_blank');
+      } else if (platform === 'fb') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`, '_blank');
+      } else if (platform === 'copy') {
+        navigator.clipboard.writeText(shareText).then(() => {
+          alert('✅ Teks prediksi berhasil di-copy!');
+          closeModal();
+        }).catch(() => alert('❌ Gagal copy, coba lagi'));
+      } else if (platform === 'link') {
+        navigator.clipboard.writeText(pageUrl).then(() => {
+          alert('✅ Link SkorDuel berhasil di-copy!');
+          closeModal();
+        }).catch(() => alert('❌ Gagal copy, coba lagi'));
+      } else if (platform === 'native') {
+        if (navigator.share) {
+          navigator.share({
+            title: 'SkorDuel — Prediksi Pertandingan',
+            text: shareText,
+            url: pageUrl
+          }).then(() => closeModal()).catch(() => {});
+        }
+      }
     }
 
     const modalData = {
