@@ -116,6 +116,93 @@
     .logo-circle:hover { transform: scale(1.08); border-color: #10b981; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25); }
     .logo-name { font-size: 10px; color: #64748b; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+    /* 👟 TOP SCORERS */
+    .top-scorers-section {
+      margin-top: 16px;
+      padding: 14px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      animation: fadeIn 0.5s ease;
+    }
+    .top-scorers-title {
+      font-size: 10px;
+      color: #059669;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .top-scorers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .scorer-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid rgba(16, 185, 129, 0.08);
+      transition: all 0.2s;
+    }
+    .scorer-row:hover {
+      background: #f0fdf4;
+      border-color: rgba(16, 185, 129, 0.25);
+      transform: translateX(2px);
+    }
+    .scorer-rank {
+      font-size: 11px;
+      font-weight: 800;
+      color: #94a3b8;
+      width: 18px;
+      text-align: center;
+    }
+    .scorer-rank.top-3 { color: #f59e0b; }
+    .scorer-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: #059669;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .scorer-logo img { width: 85%; height: 85%; object-fit: contain; }
+    .scorer-info { flex: 1; min-width: 0; }
+    .scorer-name { font-size: 11px; color: #0f172a; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .scorer-team { font-size: 9px; color: #64748b; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .scorer-goals {
+      font-size: 14px;
+      font-weight: 800;
+      color: #059669;
+      text-align: right;
+      letter-spacing: -0.5px;
+    }
+    .scorer-goals span {
+      font-size: 9px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-left: 2px;
+    }
+    .scorer-assists {
+      font-size: 9px;
+      color: #64748b;
+      text-align: right;
+      font-weight: 500;
+    }
+
     #btnPrediksi, #btnCompare {
       width: 100%; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       border: none; border-radius: 10px; color: #ffffff; font-size: 15px; font-weight: 700;
@@ -135,7 +222,6 @@
     .result-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 14px; }
     .result-title strong { color: #0f172a; font-size: 14px; font-weight: 700; }
 
-    /* SCORE PREDICTION */
     .score-prediction {
       display: flex; align-items: center; justify-content: center; gap: 16px;
       margin: 14px 0 18px; padding: 16px 12px;
@@ -149,7 +235,6 @@
     .score-divider { font-size: 20px; color: #94a3b8; font-weight: 300; padding: 0 4px; }
     .score-label { text-align: center; font-size: 10px; color: #94a3b8; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
 
-    /* 🏆 TIM UNGGULAN BESAR */
     .winner-team {
       text-align: center;
       margin: 20px 0 16px;
@@ -222,7 +307,6 @@
     .bar-draw { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
     .bar-b { background: linear-gradient(90deg, #059669, #10b981); }
 
-    /* 📤 TOMBOL SHARE UTAMA */
     .share-main-btn {
       width: 100%; padding: 14px; margin-top: 14px;
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -383,6 +467,12 @@
         <option value="mls">MLS (Amerika Serikat)</option>
         <option value="liga-1-indonesia">Liga 1 (Indonesia)</option>
       </select>
+
+      <!-- 👟 TOP SCORERS SECTION -->
+      <div class="top-scorers-section" id="topScorersSection" style="display:none;">
+        <div class="top-scorers-title">👟 Top Skor Liga</div>
+        <div class="top-scorers-list" id="topScorersList"></div>
+      </div>
 
       <label>Pilih Tim</label>
       <div class="vs-row">
@@ -549,6 +639,8 @@
     const resultDiv = document.getElementById('result');
     const loadingEl = document.getElementById('loading');
     const apiBadge = document.getElementById('apiBadge');
+    const topScorersSection = document.getElementById('topScorersSection');
+    const topScorersList = document.getElementById('topScorersList');
 
     let lastResult = {};
     const apiCache = {};
@@ -602,12 +694,55 @@
       }
     }
 
+    // 👟 FETCH TOP SCORERS
+    async function fetchTopScorers(liga) {
+      try {
+        const res = await fetch(`${API_URL}/?liga=${liga}&endpoint=scorers`);
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+
+        if (data.scorers && data.scorers.length > 0) {
+          renderTopScorers(data.scorers.slice(0, 5));
+          topScorersSection.style.display = 'block';
+        } else {
+          topScorersSection.style.display = 'none';
+        }
+      } catch (e) {
+        topScorersSection.style.display = 'none';
+      }
+    }
+
+    function renderTopScorers(scorers) {
+      topScorersList.innerHTML = scorers.map((s, i) => {
+        const rankClass = i < 3 ? 'top-3' : '';
+        const logoHtml = s.teamLogo
+          ? `<img src="${s.teamLogo}" alt="${s.team}" onerror="this.parentNode.textContent='${getInitials(s.team)}'">`
+          : getInitials(s.team);
+
+        return `
+          <div class="scorer-row">
+            <div class="scorer-rank ${rankClass}">${i + 1}</div>
+            <div class="scorer-logo">${logoHtml}</div>
+            <div class="scorer-info">
+              <div class="scorer-name">${s.player}</div>
+              <div class="scorer-team">${s.team}</div>
+            </div>
+            <div>
+              <div class="scorer-goals">${s.goals}<span>gol</span></div>
+              <div class="scorer-assists">${s.assists || 0} assist</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     ligaSelect.addEventListener('change', async () => {
       const liga = ligaSelect.value;
       timASelect.innerHTML = '<option value="">Loading...</option>';
       timBSelect.innerHTML = '<option value="">Loading...</option>';
       resultDiv.classList.remove('show');
       apiBadge.textContent = ''; apiBadge.className = 'api-badge';
+      topScorersSection.style.display = 'none';
 
       if (!liga) {
         timASelect.innerHTML = '<option value="">Tim A</option>';
@@ -628,6 +763,7 @@
       if (API_LIGA.includes(liga)) {
         apiBadge.textContent = '⚡ Data live dari Football-Data.org';
         apiBadge.classList.add('live');
+        fetchTopScorers(liga);
       } else {
         apiBadge.textContent = '📋 Data manual';
         apiBadge.classList.add('manual');
@@ -638,7 +774,6 @@
     timASelect.addEventListener('change', updateLogos);
     timBSelect.addEventListener('change', updateLogos);
 
-    // 🎯 PREDIKSI SKOR SINKRON DENGAN PERSENTASE
     function predictScore(skorA, skorB, pctA, pctB, pctDraw) {
       const total = skorA + skorB;
       const baseGoals = 2.7;
@@ -646,29 +781,19 @@
       const ratioB = skorB / total;
       const selisih = Math.abs(pctA - pctB);
 
-      // Tentukan mode hasil berdasarkan selisih persentase
       let mode;
-      if (selisih < 5) {
-        mode = 'draw'; // selisih tipis → draw
-      } else if (pctA > pctB) {
-        mode = 'A'; // A unggul
-      } else {
-        mode = 'B'; // B unggul
-      }
+      if (selisih < 5) mode = 'draw';
+      else if (pctA > pctB) mode = 'A';
+      else mode = 'B';
 
-      // Hitung gol dasar
       let golA = Math.round(baseGoals * ratioA + (Math.random() * 0.6 - 0.3));
       let golB = Math.round(baseGoals * ratioB + (Math.random() * 0.6 - 0.3));
-
-      // Clamp 0-5
       golA = Math.max(0, Math.min(5, golA));
       golB = Math.max(0, Math.min(5, golB));
 
-      // Sinkronkan dengan mode
       if (mode === 'draw') {
         const drawScore = Math.max(golA, golB);
-        golA = drawScore;
-        golB = drawScore;
+        golA = drawScore; golB = drawScore;
       } else if (mode === 'A') {
         if (golA <= golB) {
           golA = golB + 1 + Math.floor(Math.random() * 2);
@@ -704,7 +829,6 @@
       const pctB = Math.round((skorB / total) * (100 - drawWeight));
       const pctDraw = 100 - pctA - pctB;
 
-      // 🔥 PREDIKSI SKOR SINKRON
       const { golA, golB, mode } = predictScore(skorA, skorB, pctA, pctB, pctDraw);
 
       document.getElementById('resultTitle').innerHTML = `<strong>${timA}</strong> vs <strong>${timB}</strong>`;
@@ -730,7 +854,6 @@
         document.getElementById('fillB').style.width = pctB + '%';
       }, 100);
 
-      // 🏆 TENTUKAN UNGGULAN — pakai `mode` dari predictScore biar sinkron
       let winnerText = '';
       let winnerTeamName = '';
       let winnerPct = 0;
@@ -968,6 +1091,8 @@
           <li>Selisih ≥ 5% → tim unggulan <strong>harus menang</strong></li>
           <li>Skor dasar dari rasio kekuatan × 2.7 gol rata-rata</li>
         </ul>
+        <h3>👟 Top Skor</h3>
+        <p>Daftar 5 pencetak gol terbanyak di liga yang dipilih (sumber: Football-Data.org).</p>
         <h3>⚠️ Disclaimer</h3>
         <p>Prediksi ini <strong>hanya estimasi statistik</strong>, bukan jaminan hasil. Gunakan sebagai referensi, bukan patokan mutlak.</p>
         <button class="modal-close" onclick="closeModal()">Mengerti</button>`
