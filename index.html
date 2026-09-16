@@ -383,43 +383,225 @@
 
     console.log = console.warn = console.error = () => {};
 
-    // 📊 Data skor kekuatan tim
+    // 📊 DATA TIM & SKOR KEKUATAN
+    // Skor default 70-85, SILAKAN EDIT SENDIRI sesuai performa tim
     const teamsData = {
+      // === PREMIER LEAGUE (20 tim) ===
       'premier-league': {
-        "Manchester City": 92, "Arsenal": 88, "Liverpool": 87, "Chelsea": 80,
-        "Manchester United": 78, "Tottenham": 76, "Newcastle": 75, "Aston Villa": 74
+        "Manchester City": 92,
+        "Arsenal": 89,
+        "Liverpool": 88,
+        "Chelsea": 82,
+        "Aston Villa": 80,
+        "Tottenham": 78,
+        "Manchester United": 77,
+        "Newcastle": 76,
+        "Brighton": 75,
+        "West Ham": 74,
+        "Crystal Palace": 73,
+        "Brentford": 72,
+        "Fulham": 72,
+        "Bournemouth": 71,
+        "Wolves": 70,
+        "Everton": 69,
+        "Nottingham Forest": 69,
+        "Leicester City": 68,
+        "Ipswich Town": 66,
+        "Southampton": 65
       },
+
+      // === LA LIGA (20 tim) ===
       'la-liga': {
-        "Real Madrid": 91, "Barcelona": 86, "Atletico Madrid": 83, "Sevilla": 76,
-        "Real Sociedad": 75, "Villarreal": 74, "Valencia": 72, "Betis": 71
+        "Real Madrid": 92,
+        "Barcelona": 88,
+        "Atletico Madrid": 85,
+        "Athletic Bilbao": 79,
+        "Real Sociedad": 77,
+        "Villarreal": 76,
+        "Real Betis": 75,
+        "Valencia": 74,
+        "Sevilla": 74,
+        "Girona": 73,
+        "Osasuna": 72,
+        "Celta Vigo": 71,
+        "Rayo Vallecano": 70,
+        "Mallorca": 70,
+        "Getafe": 69,
+        "Alaves": 68,
+        "Las Palmas": 67,
+        "Espanyol": 66,
+        "Leganes": 65,
+        "Valladolid": 64
       },
+
+      // === SERIE A (20 tim) ===
       'serie-a': {
-        "Inter Milan": 89, "AC Milan": 85, "Juventus": 84, "Napoli": 82,
-        "Roma": 80, "Lazio": 78, "Atalanta": 77, "Fiorentina": 75
+        "Inter Milan": 90,
+        "AC Milan": 86,
+        "Juventus": 85,
+        "Napoli": 84,
+        "Atalanta": 82,
+        "Roma": 80,
+        "Lazio": 79,
+        "Fiorentina": 77,
+        "Bologna": 76,
+        "Torino": 74,
+        "Udinese": 73,
+        "Genoa": 72,
+        "Monza": 71,
+        "Lecce": 70,
+        "Cagliari": 69,
+        "Verona": 68,
+        "Empoli": 68,
+        "Parma": 67,
+        "Como": 66,
+        "Venezia": 65
       },
+
+      // === BUNDESLIGA (18 tim) ===
       'bundesliga': {
-        "Bayern Munich": 91, "Borussia Dortmund": 84, "RB Leipzig": 83, "Bayer Leverkusen": 88,
-        "Union Berlin": 74, "Freiburg": 73, "Stuttgart": 76, "Wolfsburg": 72
+        "Bayern Munich": 92,
+        "Bayer Leverkusen": 89,
+        "Borussia Dortmund": 84,
+        "RB Leipzig": 83,
+        "Stuttgart": 78,
+        "Eintracht Frankfurt": 77,
+        "Hoffenheim": 74,
+        "Freiburg": 73,
+        "Union Berlin": 72,
+        "Werder Bremen": 71,
+        "Wolfsburg": 71,
+        "Mainz": 70,
+        "Augsburg": 69,
+        "Borussia Monchengladbach": 69,
+        "Heidenheim": 67,
+        "St. Pauli": 66,
+        "Holstein Kiel": 65,
+        "Bochum": 64
       },
+
+      // === LIGUE 1 (18 tim) ===
       'ligue-1': {
-        "PSG": 90, "Marseille": 79, "Monaco": 80, "Lyon": 76,
-        "Lille": 77, "Nice": 74, "Rennes": 73, "Lens": 75
+        "PSG": 92,
+        "Monaco": 82,
+        "Marseille": 80,
+        "Lille": 78,
+        "Lyon": 77,
+        "Nice": 75,
+        "Lens": 74,
+        "Rennes": 73,
+        "Strasbourg": 71,
+        "Toulouse": 70,
+        "Reims": 69,
+        "Nantes": 68,
+        "Brest": 68,
+        "Montpellier": 67,
+        "Auxerre": 66,
+        "Angers": 65,
+        "Le Havre": 64,
+        "Saint-Etienne": 63
       },
+
+      // === SAUDI PRO LEAGUE (18 tim) ===
       'saudi-pro-league': {
-        "Al Hilal": 85, "Al Nassr": 83, "Al Ittihad": 82, "Al Ahli": 79,
-        "Al Shabab": 74, "Al Ettifaq": 72, "Al Taawoun": 70, "Al Fateh": 68
+        "Al Hilal": 88,
+        "Al Nassr": 86,
+        "Al Ittihad": 84,
+        "Al Ahli": 82,
+        "Al Qadsiah": 78,
+        "Neom SC": 76,
+        "Al Shabab": 74,
+        "Al Ettifaq": 73,
+        "Al Taawoun": 72,
+        "Al Khaleej": 71,
+        "Al Fateh": 70,
+        "Al Riyadh": 69,
+        "Al Fayha": 68,
+        "Al Hazem": 67,
+        "Al Kholood": 66,
+        "Diriyah": 66,
+        "Al Faisaly": 65,
+        "Abha": 64
       },
+
+      // === J1 LEAGUE (20 tim) ===
       'j1-league': {
-        "Yokohama F. Marinos": 78, "Kawasaki Frontale": 77, "Vissel Kobe": 76, "Urawa Reds": 75,
-        "Kashima Antlers": 74, "Sanfrecce Hiroshima": 73, "FC Tokyo": 71, "Cerezo Osaka": 70
+        "Vissel Kobe": 80,
+        "Kashima Antlers": 79,
+        "Machida Zelvia": 78,
+        "Sanfrecce Hiroshima": 77,
+        "Kashiwa Reysol": 76,
+        "Yokohama F. Marinos": 76,
+        "Cerezo Osaka": 75,
+        "FC Tokyo": 74,
+        "Urawa Reds": 74,
+        "Kawasaki Frontale": 73,
+        "Gamba Osaka": 72,
+        "Nagoya Grampus": 72,
+        "Fagiano Okayama": 71,
+        "Kyoto Sanga": 70,
+        "Avispa Fukuoka": 70,
+        "Shimizu S-Pulse": 69,
+        "Tokyo Verdy": 68,
+        "Mito Hollyhock": 68,
+        "V-Varen Nagasaki": 67,
+        "JEF United": 66
       },
+
+      // === MLS (30 tim) ===
       'mls': {
-        "Inter Miami": 80, "LAFC": 79, "LA Galaxy": 77, "Seattle Sounders": 76,
-        "Atlanta United": 74, "Austin FC": 72, "New York City FC": 73, "Philadelphia Union": 75
+        "Inter Miami": 82,
+        "LAFC": 81,
+        "LA Galaxy": 79,
+        "Columbus Crew": 78,
+        "Seattle Sounders": 77,
+        "FC Cincinnati": 76,
+        "Philadelphia Union": 76,
+        "Atlanta United": 75,
+        "New York City FC": 74,
+        "New York Red Bulls": 74,
+        "Portland Timbers": 73,
+        "Nashville SC": 73,
+        "Orlando City": 72,
+        "Charlotte FC": 72,
+        "Austin FC": 71,
+        "Houston Dynamo": 71,
+        "FC Dallas": 70,
+        "Minnesota Stars": 70,
+        "Real Salt Lake": 69,
+        "Vancouver Whitecaps": 69,
+        "Colorado Rapids": 68,
+        "Sporting Kansas City": 68,
+        "St. Louis City": 68,
+        "New England Revolution": 67,
+        "Chicago Fire": 67,
+        "DC United": 66,
+        "Toronto FC": 66,
+        "CF Montreal": 65,
+        "San Jose Earthquakes": 65,
+        "San Diego FC": 70
       },
+
+      // === LIGA 1 INDONESIA (18 tim) ===
       'liga-1-indonesia': {
-        "Persija Jakarta": 76, "Persib Bandung": 78, "Arema FC": 74, "Bali United": 77,
-        "PSM Makassar": 75, "Bhayangkara FC": 70, "Persebaya": 73, "Madura United": 72
+        "Persib Bandung": 80,
+        "Bali United": 79,
+        "Persija Jakarta": 78,
+        "Arema FC": 76,
+        "PSM Makassar": 76,
+        "Borneo FC": 75,
+        "Madura United": 74,
+        "Persebaya Surabaya": 74,
+        "Dewa United": 73,
+        "Persita Tangerang": 72,
+        "PSS Sleman": 71,
+        "Persik Kediri": 71,
+        "Bhayangkara FC": 70,
+        "PSIM Yogyakarta": 69,
+        "Garudayaksa FC": 68,
+        "Persijap Jepara": 67,
+        "Java United": 66,
+        "Isenmulang FC": 65
       }
     };
 
